@@ -1,0 +1,76 @@
+Submission of a problem
+=======================
+* A web interface with the following fields
+    - Title (mandatory)
+    - Description 
+    - Application
+    - MathML file
+* Email address of the submitter - This field does not show up if user is logged in.
+* Tags - comma separated list of keywords
+* Captcha - Re-Captcha?
+
+
+Checks to be performed
+----------------------
+* MathML file must have valid MathML.
+
+What happens at the backend
+---------------------------
+* Submitter's user-id is taken from the db. If email is not present, create an account and get user-id.
+* Problems table is populated with the info provided from title, description, application.
+* MathML file is imported in db field.
+* User-id derived above is inserted.
+* Timestamp is also set as NOW().
+* Verification status of the problem is set to 'FALSE'.
+* Admin is informed by email that a new problem has been submitted.
+
+
+Administration of problems
+=========================
+* Show "Unverified problems" by default. These are the new submissions.
+* Search field to find problems
+* Mark a problem as duplicate of an earlier submitted problem.
+* Delete a problem 
+    - If a problem has solutions associated with it, a warning message shows up
+* Add/remove tags
+    - One top level tag like mathematics, physics is mandatory
+* Verify a problem (i.e. accept a problem)
+
+Submissions of solutions
+========================
+* Search for problems
+* In the search results, button to select solution for
+* Form with following fields
+    - problem id (hidden; selected above)
+    - email address
+    - MathML file upload
+    - Comment
+    - Captcha
+
+Checks to be performed
+----------------------
+* MathML file must have valid MathML.
+
+What happens at the backend
+---------------------------
+* Inform the admin that a solution has been submitted.
+
+Administration of solutions
+===========================
+* Search field
+* Show all solutions associated with problems
+* Button to verify a solution
+
+
+User Interface
+==============
+* List of what someone should see 
+    - Search for problems
+    - Available tags (with their sub-tags to narrow down?)
+    - Suggest tags 
+* Adding tags to session narrows down the field
+* Removing tags expands the field
+* Show a random problem for the field of the session
+* 'Next random' button to show next problem of that session
+* Record the list of problems viewed in order to avoid repetition.
+* Show user 'avatars' based on their email address.
