@@ -86,6 +86,13 @@ fwrite($fd, date('c').' | '.$msg.PHP_EOL);
 fclose($fd);
 }
 
+function isCurrent($uri){
+    if($_SERVER['REQUEST_URI'] == $uri){
+        return true;
+    }
+    return false;
+}
+
 // calls to initialization functions
 $app_config = getConfig();
 #date_default_timezone_set('America/New_York');
