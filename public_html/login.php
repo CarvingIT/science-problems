@@ -36,20 +36,18 @@
 												<!-- Content -->
 													<article class="box is-post">
 														<header>
-															<h2>Contact</h2>
-															<span class="byline">Fill out the form below to get in touch with us.</span>
+															<h2>Login</h2>
 														</header>
+														<p>
 <form class="fullwidth" method="post" action="">
 <label>Your username</label>
 <input type="text" name="username" value="" required/>
-<label>Subject</label>
-<input type="text" name="subject" value="" required/>
-<label>Message</label>
-<input type="text" name="message" value="" required/>
-</textarea>
+<label>Password</label>
+<input type="password" name="password" value="" required/>
 <br/>
 <input type="submit"/>
 </form>
+														</p>
 													</article>
 
 											</div>

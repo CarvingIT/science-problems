@@ -11,7 +11,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/../lib/lib.php';
 								<section id="header">
 									
 									<!-- Logo -->
-										<h1><a href="/">Problems!</a></h1>
+										<h1><a href="/">Science problems</a></h1>
 									
 									<!-- Nav -->
 										<nav id="nav">
@@ -37,7 +37,12 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/../lib/lib.php';
 													</ul>
 												</li>
 												<li class="<?php echo isCurrent('/about.php')?'current_page_item':''; ?>"><a href="about.php">About</a></li>
-												<li class="<?php echo isCurrent('/contribute.php')?'current_page_item':''; ?>"><a href="contribute.php">Contribute</a></li>
+												<li class="<?php echo isCurrent('/contribute.php')?'current_page_item':''; ?>"><a href="contribute.php">Contribute</a>
+                                                <ul>
+                                                    <li><a href="/login.php">Login</a></li>
+                                                    <li><a href="/signup.php">Sign up!</a></li>
+                                                </ul>
+                                                </li>
 												<li class="<?php echo isCurrent('/contact.php')?'current_page_item':''; ?>"><a href="contact.php">Contact</a></li>
 											</ul>
 										</nav>

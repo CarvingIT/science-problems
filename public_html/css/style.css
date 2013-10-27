@@ -89,7 +89,15 @@
 		{
 			-webkit-appearance: none;
 		}
-			
+	
+    form.fullwidth input{
+        display:block;
+        padding:5px;
+        border:1px solid #666;
+        background-color:#eee;
+        width:100%;
+    }
+
 	br.clear
 	{
 		clear: both;

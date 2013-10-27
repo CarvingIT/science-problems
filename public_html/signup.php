@@ -36,17 +36,20 @@
 												<!-- Content -->
 													<article class="box is-post">
 														<header>
-															<h2>Contact</h2>
-															<span class="byline">Fill out the form below to get in touch with us.</span>
+															<h2>Sign up!</h2>
+															<span class="byline">Signing up is necessary if you want to contribute problems and/or solutions.</span>
 														</header>
 <form class="fullwidth" method="post" action="">
-<label>Your username</label>
+<label>Choose a username</label>
 <input type="text" name="username" value="" required/>
-<label>Subject</label>
-<input type="text" name="subject" value="" required/>
-<label>Message</label>
-<input type="text" name="message" value="" required/>
-</textarea>
+<label>Enter your email address</label>
+<input type="text" name="email" value="" required/>
+<label>Your name</label>
+<input type="text" name="full_name" value="" required/>
+<label>Password</label>
+<input type="password" name="password" value="" required/>
+<label>Password again</label>
+<input type="password" name="password_again" value="" required/>
 <br/>
 <input type="submit"/>
 </form>
