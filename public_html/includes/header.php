@@ -37,12 +37,21 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/../lib/lib.php';
 													</ul>
 												</li>
 												<li class="<?php echo isCurrent('/about.php')?'current_page_item':''; ?>"><a href="about.php">About</a></li>
+                                                <?php if(empty($u->user_id)){ ?>
 												<li class="<?php echo isCurrent('/contribute.php')?'current_page_item':''; ?>"><a href="contribute.php">Contribute</a>
                                                 <ul>
                                                     <li><a href="/login.php">Login</a></li>
                                                     <li><a href="/signup.php">Sign up!</a></li>
                                                 </ul>
                                                 </li>
+                                                <?php }else{?>
+                                                <li class="<?php echo isCurrent('/account.php')?'current_page_item':''; ?>"><a href="account.php">My Account</a>
+                                                    <ul>
+                                                    <li><a href="#">Upload a new problem</a></li>
+                                                    <li><a href="/logout.php">Logout</a></li>
+                                                    </ul>
+                                                </li>
+                                                <?php }//user menu ends ?>
 												<li class="<?php echo isCurrent('/contact.php')?'current_page_item':''; ?>"><a href="contact.php">Contact</a></li>
 											</ul>
 										</nav>

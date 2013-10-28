@@ -1,7 +1,18 @@
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/includes/php_header.php';
+
+if($_POST){
+   if($u->authenticate($_POST['username'], $_POST['password'])){
+        $_SESSION['user_id'] = $u->user_id;
+        //redirect to the site home
+        header("location:/");
+   }
+}
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Science problems</title>
+		<title>Login</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -39,6 +50,7 @@
 															<h2>Login</h2>
 														</header>
 														<p>
+<span class="error"><?php echo $u->error; ?></span>
 <form class="fullwidth" method="post" action="">
 <label>Your username</label>
 <input type="text" name="username" value="" required/>

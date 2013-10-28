@@ -1,3 +1,4 @@
+<?php include 'includes/php_header.php'; ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
