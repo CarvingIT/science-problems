@@ -1,6 +1,3 @@
-<?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/../lib/lib.php';
-?>
 		<!-- Header Wrapper -->
 			<div id="header-wrapper">
 				<div class="container">
