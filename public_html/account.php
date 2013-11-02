@@ -12,7 +12,6 @@ if($_POST){
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic" rel="stylesheet" />
 		<script src="js/jquery.min.js"></script>
 		<script src="js/jquery.dropotron.js"></script>
 		<script src="js/config.js"></script>

@@ -9,7 +9,7 @@ $problem = $u->getRandomProblem();
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic" rel="stylesheet" />
+		<!-- link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic" rel="stylesheet" /--> 
 		<script src="js/jquery.min.js"></script>
 		<script src="js/jquery.dropotron.js"></script>
 		<script src="js/config.js"></script>
@@ -53,7 +53,14 @@ $problem = $u->getRandomProblem();
 															<h2>Random problem</h2>
 															<span class="byline"><?php echo $problem['title']; ?></span>
 														</header>
+<p>
 <?php echo $problem['mml']; ?>
+</p>
+<p>
+                                                        <a href="/problem.php?p=<?php echo $problem['id']; ?>">See the solution</a> |
+                                                        <a href="#">Next random problem</a> |
+                                                        <a href="#">Next problem in my list</a>
+</p>
 														</section>
 													</article>
 

@@ -24,7 +24,7 @@ class User{
     }
 
 	function __call($functionName, $argumentsArray ){
-		$this->setError('undefined_function');
+		$this->setError('undefined_function ' . $functionName);
 	}
 
 /*
@@ -204,6 +204,34 @@ public function getRandomProblem(){
         WHERE status = 1 
         ORDER BY rand() LIMIT 1";
     $res = mysql_query($select);
+    return mysql_fetch_assoc($res);
+}
+
+/* 
+Get all approved solutions of a problem
+*/
+public function getSolutions($problem_id){
+    $select = sprintf("SELECT * FROM solutions 
+        WHERE problem_id = '%s' 
+        AND status = 1",
+        mysql_real_escape_string($problem_id));
+    $res = mysql_query($select) or $this->setError(mysql_error() . $select);
+    $solutions = array();
+    while($row = mysql_fetch_assoc($res)){
+        $solutions[] = $row;
+    }
+    return $solutions;
+}
+
+/*
+Get user details
+*/
+
+public function getUserDetails($user_id){
+    $select = sprintf("SELECT * FROM users 
+        WHERE id = '%s'",
+        mysql_real_escape_string($user_id));
+    $res = mysql_query($select) or $this->setError(mysql_error() . $select);
     return mysql_fetch_assoc($res);
 }
 

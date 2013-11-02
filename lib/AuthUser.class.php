@@ -30,5 +30,22 @@ public function submitProblem($data){
     return true;
 }
 
+/*
+Submit a solution to a problem
+*/
+public function submitSolution($data){
+    if(empty($data['problem_id'])){
+        $this->setError('Problem ID can not be null.');
+        return false;
+    }
+    $insert = sprintf("INSERT INTO solutions
+    (`problem_id`, `solution`, `submitted_by`, `submitted`)
+    VALUES('%s', '%s', $this->user_id, NOW())",
+    mysql_real_escape_string($data['problem_id']),
+    mysql_real_escape_string($data['mml']));
+    mysql_query($insert) or $this->setError(mysql_error(). $insert);
+    return true;
+}
+
 }//class ends
 

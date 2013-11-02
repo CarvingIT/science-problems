@@ -1,16 +1,42 @@
-<?php include 'includes/php_header.php'; ?>
+<?php
+include $_SERVER['DOCUMENT_ROOT'].'/includes/php_header.php';
+
+$problem = $u->getProblemById($_GET['p']);
+
+if($_POST){
+    $data = $_POST;
+    $data['mml'] = file_get_contents($_FILES['mml']['tmp_name']);
+    if(!$u->submitSolution($data)){
+        $error = $u->error;
+    }
+    else{
+        $msg = 'Solution submitted successfully. It will appear on the website after approval of an editor. Thank you for contributing to this growing collection of science-problems!';
+    }
+}
+
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Science problems</title>
+		<title>New problem</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
+		<!--link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic" rel="stylesheet" /-->
 		<script src="js/jquery.min.js"></script>
 		<script src="js/jquery.dropotron.js"></script>
 		<script src="js/config.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-panels.min.js"></script>
+
+        <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        MathML: {
+              extensions: ["content-mathml.js"]
+                }
+                });
+        </script>
+		<script type="text/javascript" src="/js/mathjax/MathJax.js?config=MML_HTMLorMML-full"></script>
 		<noscript>
 			<link rel="stylesheet" href="css/skel-noscript.css" />
 			<link rel="stylesheet" href="css/style.css" />
@@ -36,24 +62,24 @@
 												<!-- Content -->
 													<article class="box is-post">
 														<header>
-															<h2>Contribute</h2>
-															<span class="byline">Be a part of this useful project!</span>
+															<h2>New Solution</h2>
 														</header>
 														<p>
+<h3>Problem</h3>
+<?php
+echo $problem['mml'];
+?>
+<h3>Upload solution file</h3>
+<span class="error"><?php echo $error; ?></span>
+<span class="message"><?php echo $msg; ?></span>
+<form class="fullwidth" enctype="multipart/form-data" method="post" action="">
+<input type="hidden" name="problem_id" value="<?php echo $_GET['p']; ?>"/>
+<label>MathML file</label>
+<input type="file" name="mml" required/>
+<br/>
+<input type="submit"/>
+</form>
 														</p>
-														<section>
-															<header>
-																<h3>Send us problems and/or solutions!</h3>
-															</header>
-															<p>
-																You will need a MathML editor for this purpose. Here are the steps.
-															</p>
-                                                            <ul>
-                                                            <li>Create an account on the website.</li>
-                                                            <li>Login</li>
-                                                            <li>You will find relevant links under "Contribute" menu at the top.</li>
-                                                            </ul>
-														</section>
 													</article>
 
 											</div>

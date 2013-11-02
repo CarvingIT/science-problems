@@ -1,6 +1,7 @@
 <?php include 'includes/php_header.php'; ?>
 <?php
     $problem = $u->getProblemById($_GET['p']);
+    $solutions = $u->getSolutions($_GET['p']);
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -9,7 +10,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic" rel="stylesheet" />
+		<!--link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic" rel="stylesheet" /-->
 		<script src="js/jquery.min.js"></script>
 		<script src="js/jquery.dropotron.js"></script>
 		<script src="js/config.js"></script>
@@ -54,6 +55,18 @@
 														</header>
                                                         <p>
                                                         <?php echo $problem['mml']; ?>
+                                                        </p>
+                                                        <?php
+                                                        foreach($solutions as $s){
+                                                            $submitter_profile = $u->getUserDetails($s['submitted_by']);
+                                                            echo "<h3>Solution submitted by $submitter_profile[name]</h3>";
+                                                            echo "<p>$s[solution]</p>";
+                                                        }
+                                                        ?>
+                                                        <p>
+                                                        <a href="/new_solution.php?p=<?php echo $problem['id']; ?>">Submit a solution</a>
+                                                        <a href="#">Next random problem</a>
+                                                        <a href="#">Next problem in my list</a>
                                                         </p>
 														</section>
 													</article>
