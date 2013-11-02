@@ -34,6 +34,7 @@
 													</ul>
 												</li>
 												<li class="<?php echo isCurrent('/about.php')?'current_page_item':''; ?>"><a href="about.php">About</a></li>
+												<li class="<?php echo isCurrent('/contact.php')?'current_page_item':''; ?>"><a href="contact.php">Contact</a></li>
                                                 <?php if(empty($u->user_id)){ ?>
 												<li class="<?php echo isCurrent('/contribute.php')?'current_page_item':''; ?>"><a href="contribute.php">Contribute</a>
                                                 <ul>
@@ -42,14 +43,13 @@
                                                 </ul>
                                                 </li>
                                                 <?php }else{?>
-                                                <li class="<?php echo isCurrent('/account.php')?'current_page_item':''; ?>"><a href="account.php">My Account</a>
+                                                <li class="<?php echo isCurrent('/account.php')?'current_page_item':''; ?>"><a href="account.php"><?php echo $u->user_profile['name']; ?></a>
                                                     <ul>
-                                                    <li><a href="#">Upload a new problem</a></li>
+                                                    <li><a href="/new_problem.php">Upload a new problem</a></li>
                                                     <li><a href="/logout.php">Logout</a></li>
                                                     </ul>
                                                 </li>
                                                 <?php }//user menu ends ?>
-												<li class="<?php echo isCurrent('/contact.php')?'current_page_item':''; ?>"><a href="contact.php">Contact</a></li>
 											</ul>
 										</nav>
 

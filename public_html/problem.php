@@ -1,11 +1,11 @@
 <?php include 'includes/php_header.php'; ?>
 <?php
-$problem = $u->getRandomProblem();
+    $problem = $u->getProblemById($_GET['p']);
 ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Science problems</title>
+		<title>Science problems - <?php echo $problem['title']; ?></title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -50,10 +50,11 @@ $problem = $u->getRandomProblem();
 												<!-- Content -->
 													<article class="box is-post">
 														<header>
-															<h2>Random problem</h2>
-															<span class="byline"><?php echo $problem['title']; ?></span>
+															<h2><?php echo $problem['title']; ?></h2>
 														</header>
-<?php echo $problem['mml']; ?>
+                                                        <p>
+                                                        <?php echo $problem['mml']; ?>
+                                                        </p>
 														</section>
 													</article>
 

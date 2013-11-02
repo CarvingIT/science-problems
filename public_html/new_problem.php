@@ -1,11 +1,22 @@
-<?php include 'includes/php_header.php'; ?>
 <?php
-$problem = $u->getRandomProblem();
+include $_SERVER['DOCUMENT_ROOT'].'/includes/php_header.php';
+
+if($_POST){
+    $data = $_POST;
+    $data['mml'] = file_get_contents($_FILES['mml']['tmp_name']);
+    if(!$u->submitProblem($data)){
+        $error = $u->error;
+    }
+    else{
+        $msg = 'Problem submitted successfully. It will appear on the website after approval of an editor. Thank you for contributing to this growing collection of science-problems!';
+    }
+}
+
 ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Science problems</title>
+		<title>New problem</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -15,16 +26,6 @@ $problem = $u->getRandomProblem();
 		<script src="js/config.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-panels.min.js"></script>
-
-        <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-        MathML: {
-              extensions: ["content-mathml.js"]
-                }
-                });
-        </script>
-		<script type="text/javascript" src="/js/mathjax/MathJax.js?config=MML_HTMLorMML-full"></script>
-
 		<noscript>
 			<link rel="stylesheet" href="css/skel-noscript.css" />
 			<link rel="stylesheet" href="css/style.css" />
@@ -50,11 +51,22 @@ $problem = $u->getRandomProblem();
 												<!-- Content -->
 													<article class="box is-post">
 														<header>
-															<h2>Random problem</h2>
-															<span class="byline"><?php echo $problem['title']; ?></span>
+															<h2>New Problem</h2>
 														</header>
-<?php echo $problem['mml']; ?>
-														</section>
+														<p>
+<span class="error"><?php echo $error; ?></span>
+<span class="message"><?php echo $msg; ?></span>
+<form class="fullwidth" enctype="multipart/form-data" method="post" action="">
+<label>Title</label>
+<input type="text" name="title" value="" required/>
+<label>Description</label>
+<input type="text" name="decription" value="" required/>
+<label>MathML file</label>
+<input type="file" name="mml" required/>
+<br/>
+<input type="submit"/>
+</form>
+														</p>
 													</article>
 
 											</div>

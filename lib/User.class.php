@@ -17,7 +17,7 @@ class User{
         $this->user_id = $user_id;
 		if(!empty($user_id)){
 			$this->user_type = $this->getUserType();
-			$this->user_profile = $this->getUserDetails($user_id);
+			$this->_setUserProfile();
 		}
 		//some initialization stuff here
 		$this->app_config = getConfig();
@@ -34,23 +34,7 @@ function setError()
 public function setError($error){
     $this->error = $error;
 }
-/* 
-	The following function sets the error_code
-*/
-public function setErrorCode($error_code){
-	$this->error_code = $error_code;
-}
 
-/*
-function hasError() 
-	return true if class varible has some error value else return false. 
-*/
-public function hasError(){
-	if(empty($this->error)){
-		return false;
-	}
-	return true;
-}
 /*
 function authenticate($username,$password); 
 	validate user entered username and password with database username and password 
@@ -90,26 +74,6 @@ public function logout(){
 		$_SESSION['user_id'] = null;
 }
 
-private function _setUserProfile(){
-	$this->user_profile = $this->getUserDetails($this->user_id);
-}
-
-/*
-function isAdmin() 
-	return true if logged in user type is Admin other wise return false with error message.
-*/
-public function isAdmin(){
-	$select = "SELECT 1 FROM users 
-		LEFT JOIN user_types ON users.type = user_types.id
-		WHERE users.id = $this->user_id 
-		AND user_types.type = 'Admin'";
-	$res = mysql_query($select) or $this->setError('You are not the Admin');
-	if(mysql_num_rows($res) == 1){
-		return true;
-	}
-	return false;
-}
-
 /*
 function getUserType() 
 	return user type of logged in user.
@@ -123,6 +87,33 @@ private function getUserType(){
 		return $row['type'];
 }
 
+/* functions to check user types 
+Redundant functions for public properties
+*/
+public function isAdmin(){
+    if($this->user_type == 'Admin'){
+        return true;
+    }
+    return false;
+}
+
+public function isAuthUser(){
+    if(!empty($this->user_id)){
+        return true;
+    }
+    return false;
+}
+
+/* set user's profile */
+private function _setUserProfile(){
+    if(empty($this->user_id)){
+        return null;
+    }
+    $select = "SELECT * FROM users
+        WHERE id = $this->user_id";
+    $res = mysql_query($select);
+    $this->user_profile = mysql_fetch_assoc($res);
+}
 /*
 function _loginRedirect() 
 	function redirect user to the index page. 
@@ -193,8 +184,27 @@ public function changePassword($data){
     }
 }
 
-public function submitProblem($data){
+/* 
+Get a problem by id
+*/
+public function getProblemById($problem_id){
+    $select = sprintf("SELECT * FROM problems 
+        WHERE id = '%s'
+        AND status = 1",
+        mysql_real_escape_string($problem_id));
+    $res = mysql_query($select);
+    return mysql_fetch_assoc($res);
+}
 
+/* 
+Get a random problem for the home page
+*/
+public function getRandomProblem(){
+    $select = "SELECT * FROM problems 
+        WHERE status = 1 
+        ORDER BY rand() LIMIT 1";
+    $res = mysql_query($select);
+    return mysql_fetch_assoc($res);
 }
 
 }//User class ends here
