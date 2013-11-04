@@ -58,7 +58,7 @@ $problem = $u->getRandomProblem();
 </p>
 <p>
                                                         <a href="/problem.php?p=<?php echo $problem['id']; ?>">See the solution</a> |
-                                                        <a href="#">Next random problem</a> |
+                                                        <a href="/">Next random problem</a> |
                                                         <a href="#">Next problem in my list</a>
 </p>
 														</section>

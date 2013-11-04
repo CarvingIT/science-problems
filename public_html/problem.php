@@ -54,6 +54,15 @@
 															<h2><?php echo $problem['title']; ?></h2>
 														</header>
                                                         <p>
+                                                        <?php
+                                                        if($u->isAdmin()){
+                                                            if($problem['status'] != '1'){
+                                                                echo "<a href=\"/approve_problem.php?p=$problem[id]\">Approve</a>";
+                                                            }
+                                                        }
+                                                        ?>
+                                                        </p>
+                                                        <p>
                                                         <?php echo $problem['mml']; ?>
                                                         </p>
                                                         <?php
@@ -61,12 +70,14 @@
                                                             $submitter_profile = $u->getUserDetails($s['submitted_by']);
                                                             echo "<h3>Solution submitted by $submitter_profile[name]</h3>";
                                                             echo "<p>$s[solution]</p>";
+                                                            if($u->isAdmin()){
+                                                                echo "<p><a onclick=\"return confirm('Are you sure you want to delete this solution?');\" href=\"/delete_solution.php?s=$s[id]\">Delete this solution</a>";
+                                                            }
                                                         }
                                                         ?>
                                                         <p>
-                                                        <a href="/new_solution.php?p=<?php echo $problem['id']; ?>">Submit a solution</a>
-                                                        <a href="#">Next random problem</a>
-                                                        <a href="#">Next problem in my list</a>
+                                                        <a href="/new_solution.php?p=<?php echo $problem['id']; ?>">Submit a solution</a> |
+                                                        <a href="#">Next problem in my list</a> 
                                                         </p>
 														</section>
 													</article>

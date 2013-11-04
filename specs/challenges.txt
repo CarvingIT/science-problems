@@ -1,4 +1,2 @@
-* Site should be responsive
-* UI to be clean and intuitive
 * Facility to import problems and solutions
 * Search 

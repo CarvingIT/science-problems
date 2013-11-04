@@ -36,40 +36,19 @@
 												<!-- Content -->
 													<article class="box is-post">
 														<header>
-															<h2>About us</h2>
-															<span class="byline">Lorem ipsum dolor sit amet feugiat</span>
+															<h2>About this site</h2>
+															<span class="byline">In other words, "Why this site?"</span>
 														</header>
 														<p>
-															Vestibulum scelerisque ultricies libero id hendrerit. Vivamus malesuada quam faucibus ante dignissim auctor 
-															hendrerit libero placerat. Nulla facilisi. Proin aliquam felis non arcu molestie at accumsan turpis commodo. 
-															Proin elementum, nibh non egestas sodales, augue quam aliquet est, id egestas diam justo adipiscing ante. 
-															Pellentesque tempus nulla non urna eleifend ut ultrices nisi faucibus.
-															Vestibulum scelerisque ultricies libero id hendrerit. Vivamus malesuada quam faucibus ante dignissim auctor 
-															hendrerit libero placerat. Nulla facilisi. Proin aliquam felis non arcu molestie at accumsan turpis commodo. 
-															Proin elementum, nibh non egestas sodales, augue quam aliquet est, id egestas diam justo adipiscing ante. 
-														</p>
-														<p>
-															Praesent a dolor leo. Duis in felis in tortor lobortis volutpat et pretium tellus. Vestibulum ac ante nisl, 
-															a elementum odio. Duis semper risus et lectus commodo fringilla. Maecenas sagittis convallis justo vel mattis. 
-															placerat, nunc diam iaculis massa, et aliquet nibh leo non nisl vitae porta lobortis, enim neque fringilla nunc, 
-															eget faucibus lacus sem quis nunc suspendisse nec lectus sit amet augue rutrum vulputate ut ut mi. Aenean 
-															elementum, mi sit amet porttitor lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor.
+                                                        The purpose of this website is to develop a resource of science problems on the internet. People should be able to classify the problems their own way using lists and share with others. We are after developing a community-driven knowledge base of science problems! If you think you can contribute to building this resource by upoading problems or solutions to this website, you are welcome.
 														</p>
 														<section>
 															<header>
-																<h3>Something else</h3>
+																<h3>What are lists?</h3>
 															</header>
-															<p>
-																Elementum odio duis semper risus et lectus commodo fringilla. Maecenas sagittis convallis justo vel mattis. 
-																placerat, nunc diam iaculis massa, et aliquet nibh leo non nisl vitae porta lobortis, enim neque fringilla nunc, 
-																eget faucibus lacus sem quis nunc suspendisse nec lectus sit amet augue rutrum vulputate ut ut mi. Aenean 
-																elementum, mi sit amet porttitor lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor
-																sit amet nullam consequat feugiat dolore tempus.
-																Elementum odio duis semper risus et lectus commodo fringilla. Maecenas sagittis convallis justo vel mattis. 
-																placerat, nunc diam iaculis massa, et aliquet nibh leo non nisl vitae porta lobortis, enim neque fringilla nunc, 
-																eget faucibus lacus sem quis nunc suspendisse nec lectus sit amet augue rutrum vulputate ut ut mi. Aenean 
-																elementum, mi sit amet porttitor lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor.
-															</p>
+                                                 <p>
+                                                 The lists of this website are analogous to play-lists of music. Users will be able to create their own lists and share with others. Every list has a unique URL. The idea of lists is an attempt to let users classify the problems the way they see fit. Some example names can be - Algebra-elementary, Grade 8 problems, Projectile motion etc. After creating lists, owners of the lists will be able to add problems to them.
+                                                 </p>
 														</section>
 													</article>
 
