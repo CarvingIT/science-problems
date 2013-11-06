@@ -52,8 +52,14 @@
                                                         }
                                                         ?>
                                                         <p>
-                                                        <a href="/new_solution.php?p=<?php echo $problem['id']; ?>">Submit a solution</a> |
-                                                        <a href="#">Next problem in my list</a> 
+                                                        <a href="/new_solution.php?p=<?php echo $problem['id']; ?>">Submit a solution</a> 
+                                                        <?php
+                                                        if(!empty($_SESSION['list_problems'])){
+                                                            if(count($_SESSION['list_problems']) > ($_SESSION['current_list_offset'] + 1)){
+                                                        ?>
+                                                        | <a href="/next_in_list.php">Next problem in my list</a> 
+                                                        | <a href="/exit_list.php">Exit list</a>
+                                                        <?php }} ?>
                                                         </p>
 														</section>
 													</article>

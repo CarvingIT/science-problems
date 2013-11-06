@@ -27,6 +27,7 @@
                                                 <li class="<?php echo isCurrent('/account.php')?'current_page_item':''; ?>"><a href="/account.php"><?php echo $u->user_profile['name']; ?></a>
                                                     <ul>
                                                     <li><a href="/new_problem.php">Upload a new problem</a></li>
+                                                    <li><a href="/l/u-<?php echo $u->user_profile['username']; ?>/all">All my problems</a></li>
                                                     <li><a href="/logout.php">Logout</a></li>
                                                     </ul>
                                                 </li>
