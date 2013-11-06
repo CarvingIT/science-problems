@@ -47,5 +47,58 @@ public function submitSolution($data){
     return true;
 }
 
-}//class ends
+/*
+Create a list (of problems)
+*/
+public function createList($listname){
+    $insert = sprintf("INSERT INTO lists
+        (`short_name`, `owner`, `created`)
+        VALUES('%s', $this->user_id, NOW())",
+        mysql_real_escape_string($listname));
+    mysql_query($insert) or die(mysql_error().$insert);
+    return true;
+}
 
+/*
+Add a problem to a list
+*/
+public function addProblemToList($problem_id, $list_id){
+    if(!$this->isListMine($list_id)){
+        $this->setError('This is not your list.');
+        return false;
+    }
+    // get current list
+
+    //append ",$problem_id"
+
+    //update the table
+}
+/*
+Remove problem from a list
+*/
+public function removeProblemFromList($problem_id, $list_id){
+    if(!$this->isListMine($list_id)){
+        $this->setError('This is not your list.');
+        return false;
+    }
+    // get current list
+
+    // remove the problem_id with preg_replace?
+
+    //update the table
+}
+
+/*
+Check if the logged in user owns the list
+*/
+private function isListMine($list_id){
+    $select = sprintf("SELECT 1 FROM lists
+        WHERE id='%s' AND `owner` = $this->user_id",
+        mysql_real_escape_string($list_id));
+    $res = mysql_query($select) or die(mysql_error().$select);
+    if(mysql_num_rows($res > 0))
+        return true;
+    return false;
+}
+
+}//class ends

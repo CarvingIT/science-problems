@@ -9,7 +9,7 @@
 								<!-- Copyright -->
 									<div id="copyright">
 										<ul class="links">
-											<li>For the people, by the people who love Science</li>
+											<li>For the people, by the people who love science.</li>
 										</ul>
 									</div>
 

@@ -190,9 +190,9 @@ Get a problem by id
 public function getProblemById($problem_id){
     $select = sprintf("SELECT * FROM problems 
         WHERE id = '%s'
-        AND status = 1",
+        AND (`status` = 1 OR `submitted_by` = '$this->user_id')",
         mysql_real_escape_string($problem_id));
-    $res = mysql_query($select);
+    $res = mysql_query($select) or die(mysql_error().$select);
     return mysql_fetch_assoc($res);
 }
 
@@ -213,7 +213,7 @@ Get all approved solutions of a problem
 public function getSolutions($problem_id){
     $select = sprintf("SELECT * FROM solutions 
         WHERE problem_id = '%s' 
-        AND status = 1",
+        AND (`status` = 1 OR `submitted_by`='$this->user_id')",
         mysql_real_escape_string($problem_id));
     $res = mysql_query($select) or $this->setError(mysql_error() . $select);
     $solutions = array();
@@ -233,6 +233,60 @@ public function getUserDetails($user_id){
         mysql_real_escape_string($user_id));
     $res = mysql_query($select) or $this->setError(mysql_error() . $select);
     return mysql_fetch_assoc($res);
+}
+
+/*
+Getting problems from a list created by user
+The list will have a unique URL
+*/
+public function getProblemsOfUserList($username, $listname){
+    //first, find the list id
+    if($listname == 'all'){
+        return $this->getProblemsSubmittedByUser($username);
+    }
+    else{
+        return $this->getProblemsOfList($this->getUserListId($username, $listname)); 
+    }
+}
+
+/*
+Get list_id from username and listname
+*/
+public function getUserListId($username, $listname){
+    $select = sprintf("SELECT id FROM lists
+        LEFT JOIN users ON lists.owner = users.id
+        WHERE `short_name` = '%s' 
+        AND users.username = '%s'",
+        mysql_real_escape_string($listname),
+        mysql_real_escape_string($username));
+    $res = mysql_query($select) or die(mysql_error().$select);
+    $row = mysql_fetch_assoc($res);
+    return $row['id'];
+}
+
+/*
+Get problems from a list id
+*/
+public function getProblemsOfList($list_id){
+    return array();
+}
+
+/*
+Get all problems submitted by a user
+*/
+public function getProblemsSubmittedByUser($username){
+    $select = sprintf("SELECT problems.* FROM problems
+        LEFT JOIN users ON problems.submitted_by = users.id
+        WHERE users.username = '%s'
+        AND (problems.status = 1 OR problems.submitted_by = '$this->user_id')
+        ORDER BY submitted DESC",
+        mysql_real_escape_string($username));
+    $res = mysql_query($select) or die(mysql_error().$select);
+    $problems = array();
+    while($row = mysql_fetch_assoc($res)){
+        $problems[] = $row;
+    }
+    return $problems;
 }
 
 }//User class ends here

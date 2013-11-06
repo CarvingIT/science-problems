@@ -1,12 +1,14 @@
 <?php include 'includes/php_header.php'; ?>
 <?php
-$problem = $u->getRandomProblem();
+    if(!empty($_GET['u'])){
+        $problems = $u->getProblemsOfUserList($_GET['u'], empty($_GET['list'])?'all':$_GET['list']);
+    }
 ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Science problems</title>
-		<?php include 'includes/html_head_include.php'; ?>
+		<title>Science problems - <?php echo $problem['title']; ?></title>
+    <?php include 'includes/html_head_include.php'; ?>
 	</head>
 	<body class="no-sidebar">
 <?php include $_SERVER['DOCUMENT_ROOT'].'/includes/header.php'; ?>
@@ -26,17 +28,15 @@ $problem = $u->getRandomProblem();
 												<!-- Content -->
 													<article class="box is-post">
 														<header>
-															<h2>Random problem</h2>
-															<span class="byline"><?php echo $problem['title']; ?></span>
+															<h2>Problem List - <?php echo $_GET['u'].'/'.$_GET['list']; ?></h2>
 														</header>
-<p>
-<?php echo $problem['mml']; ?>
-</p>
-<p>
-                                                        <a href="/p/<?php echo $problem['id']; ?>">See the solution</a> |
-                                                        <a href="/">Next random problem</a> |
-                                                        <a href="#">Next problem in my list</a>
-</p>
+                                                        <ul>
+                                                        <?php
+                                                        foreach($problems as $p){
+                                                            echo "<li><a href=\"/p/$p[id]\" title=\"$p[title]\">$p[title]</a></li>";
+                                                        }
+                                                        ?>
+                                                        </ul>
 														</section>
 													</article>
 
