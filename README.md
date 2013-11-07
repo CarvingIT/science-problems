@@ -9,4 +9,6 @@ Submission of problems
 * The problems will also have other data like title, description, keywords to make their discovery easier.
 * Problems will appear on the website after approval from the editors of the website.
 
-For questions/feedback about the website, contact us on info@science-problems.org. Criticism is welcome!
+Requesting a feature/Reporting a bug
+=====================================
+You can report bug or feature requests on GitHub.

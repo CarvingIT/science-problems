@@ -253,7 +253,7 @@ public function getProblemsOfUserList($username, $listname){
 Get list_id from username and listname
 */
 public function getUserListId($username, $listname){
-    $select = sprintf("SELECT id FROM lists
+    $select = sprintf("SELECT lists.id FROM lists
         LEFT JOIN users ON lists.owner = users.id
         WHERE `short_name` = '%s' 
         AND users.username = '%s'",
@@ -268,7 +268,15 @@ public function getUserListId($username, $listname){
 Get problems from a list id
 */
 public function getProblemsOfList($list_id){
-    return array();
+    $select = sprintf("SELECT problem_ids FROM lists
+        WHERE id = '%s'",
+        mysql_real_escape_string($list_id));
+    $res = mysql_query($select) or die(mysql_error().$select);
+    $row = mysql_fetch_assoc($res);
+    if(!empty($row['problem_ids'])){
+        $current_problem_ids = explode(',', $row['problem_ids']);
+    }
+    return $current_problem_ids;
 }
 
 /*

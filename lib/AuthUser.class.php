@@ -68,10 +68,20 @@ public function addProblemToList($problem_id, $list_id){
         return false;
     }
     // get current list
-
+    $select = sprintf("SELECT problem_ids FROM lists
+        WHERE id = '%s'",
+        mysql_real_escape_string($list_id));
+    $res = mysql_query($select) or die(mysql_error().$select);
+    $row = mysql_fetch_assoc($res);
     //append ",$problem_id"
-
+    $new_problem_string = $row['problem_ids'].','.$problem_id;
     //update the table
+    $update = sprintf("UPDATE lists SET problem_ids = '%s'
+        WHERE id = '%s'",
+        mysql_real_escape_string($new_problem_string),
+        mysql_real_escape_string($list_id));
+    mysql_query($update) or die($update . mysql_error());
+    return true;
 }
 /*
 Remove problem from a list
@@ -82,10 +92,27 @@ public function removeProblemFromList($problem_id, $list_id){
         return false;
     }
     // get current list
-
+    $select = sprintf("SELECT problem_ids FROM lists
+        WHERE id = '%s'",
+        mysql_real_escape_string($list_id));
+    $res = mysql_query($select) or die(mysql_error().$select);
+    $row = mysql_fetch_assoc($res);
     // remove the problem_id with preg_replace?
-
+    // or after creating an array?
+    $current_problem_ids = explode(',', $row['problem_ids']);
+    $new_problem_ids = array();
+    for($i=0;$i<=count($current_problem_ids); $i++){
+        if($problem_id == $current_problem_ids[$i]) continue;
+        $new_problem_ids[] = $current_problem_ids[$i];
+    }
+    $new_problem_string = implode(',', $new_problem_ids);
     //update the table
+    $update = sprintf("UPDATE lists SET problem_ids = '%s'
+        WHERE id = '%s'",
+        mysql_real_escape_string($new_problem_string),
+        mysql_real_escape_string($list_id));
+    mysql_query($update) or die($update . mysql_error());
+    return true;
 }
 
 /*
@@ -101,4 +128,17 @@ private function isListMine($list_id){
     return false;
 }
 
+/*
+Get lists of a user
+*/
+public function getMyLists(){
+    $select = "SELECT * FROM lists 
+        WHERE `owner`='$this->user_id'";
+    $res = mysql_query($select);
+    $lists = array();
+    while($row = mysql_fetch_assoc($res)){
+        $lists[] = $row;
+    }
+    return $lists;
+}
 }//class ends

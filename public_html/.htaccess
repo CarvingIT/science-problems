@@ -1,6 +1,6 @@
 RewriteEngine On
 RewriteRule ^p/(.*)$ /problem.php?p=$1 [L]
-RewriteRule ^l/u-(.*)/all$ /problem_list.php?u=$1&list=all [L]
+RewriteRule ^l/u-(.*)/(.*)$ /problem_list.php?u=$1&list=$2 [L]
 
 
 # pages with .php prefix

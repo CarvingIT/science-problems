@@ -59,7 +59,13 @@
                                                         ?>
                                                         | <a href="/next_in_list.php">Next problem in my list</a> 
                                                         | <a href="/exit_list.php">Exit list</a>
-                                                        <?php }} ?>
+                                                        <?php }else{
+                                                        ?>
+                                                        | You have reached the end of the list. <a href="/exit_list.php">Exit list</a>.
+                                                        <?php
+                                                        } 
+                                                        }
+                                                        ?>
                                                         </p>
 														</section>
 													</article>
