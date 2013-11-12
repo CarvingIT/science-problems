@@ -1,13 +1,6 @@
 <?php include 'includes/php_header.php'; ?>
 <?php
-if($_POST){
-    if($u->registerUser($_POST)){
-        $msg = "A new account has been created for you. Go ahead and login!";
-    }
-    else{
-        $error = $this->error; 
-    }
-}
+$user = $u->getUserDetails($_GET['id']);
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -33,24 +26,13 @@ if($_POST){
 												<!-- Content -->
 													<article class="box is-post">
 														<header>
-															<h2>Sign up!</h2>
-															<span class="byline">Signing up is necessary if you want to contribute problems and/or solutions.</span>
+															<h2>Update User</h2>
 														</header>
-<?php
-if(!empty($err)){
-    echo "<span class=\"error\">$err</span>";
-}
-if(!empty($msg)){
-    echo "<span class=\"message\">$msg</span>";
-}
-?>
 <form class="fullwidth" method="post" action="">
-<label>Choose a username</label>
-<input type="text" name="username" value="" required/>
-<label>Enter your email address</label>
-<input type="text" name="email" value="" required/>
+<label><?php echo $user['username']; ?></label><br/>
+<label><?php echo $user['email']; ?></label><br/>
 <label>Your name</label>
-<input type="text" name="full_name" value="" required/>
+<input type="text" name="full_name" value="<?php echo $user['name']; ?>" required/>
 <label>Password</label>
 <input type="password" name="password" value="" required/>
 <label>Password again</label>

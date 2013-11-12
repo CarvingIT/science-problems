@@ -32,7 +32,15 @@
                                                     <li><a href="/logout.php">Logout</a></li>
                                                     </ul>
                                                 </li>
-                                                <?php }//user menu ends ?>
+                                                <?php if($u->isAdmin()){ ?>
+                                               <li class="<?php echo isCurrent('/account.php')?'current_page_item':''; ?>"><a href="#">Administer</a>
+                                               <ul>
+                                                    <li><a href="/manage_users.php">Manage Users</a></li>
+                                               </ul>
+                                               </li>
+                                                <?php
+                                                }//admin menu ends
+                                                }//user menu ends ?>
 											</ul>
 										</nav>
 

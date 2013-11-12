@@ -87,5 +87,28 @@ public function deleteProblem($problem_id){
     return true;
 }
 
+/*
+Get a list of users
+*/
+public function getUsers($criteria){
+    //$criteria is an array
+    if(empty($criteria['limit'])){
+        $criteria['limit'] = 50;
+    }
+    if(empty($criteria['offset'])){
+        $offset = 0;
+    }
+
+    $select = "SELECT * FROM users 
+        WHERE 1 ";
+    $select .= " LIMIT $offset, $criteria[limit]";
+    $res = mysql_query($select) or die(mysql_error().$select);
+    $users = array();
+    while($row = mysql_fetch_assoc($res)){
+        $users[] = $row;
+    }
+    return $users;
+}
+
 }//class ends
 

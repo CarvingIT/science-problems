@@ -2,9 +2,8 @@
 include $_SERVER['DOCUMENT_ROOT'].'/includes/php_header.php';
 
 if($_POST){
-    $u->createList($_POST['title']);
 }
-$my_lists = $u->getMyLists();
+$users = $u->getUsers();
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -30,25 +29,16 @@ $my_lists = $u->getMyLists();
 												<!-- Content -->
 													<article class="box is-post">
 														<header>
-															<h2>My Lists</h2>
+															<h2>Registered users</h2>
 														</header>
 														<p>
 <span class="error"><?php echo $error; ?></span>
 <span class="message"><?php echo $msg; ?></span>
-<form class="fullwidth" method="post" action="">
-<label>Title</label>
-<input type="text" name="title" value="" required/>
-<input type="submit" value="Create a new list"/>
-</form>
 														</p>
-                     <h3>Lists</h3>
                      <ul>
                      <?php 
-                        if(count($my_lists) == 0){
-                            echo "<p>You have created no lists yet. Create one now.</p>";
-                        }
-                        foreach($my_lists as $l){
-                            echo "<li><a href=\"/l/u-".$u->user_profile['username']."/$l[short_name]\">$l[short_name]</a></li>";
+                        foreach($users as $u){
+                            echo "<li><a href=\"/update_user.php?id=$u[id]\">$u[name]</a></li>";
                         }
                      ?>
                      </ul>

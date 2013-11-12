@@ -35,6 +35,25 @@ public function setError($error){
     $this->error = $error;
 }
 
+/* 
+    function that creates a new user
+*/
+public function registerUser($data){
+    if($data['password'] != $data['password_again']){
+        $this->setError('Passwords do not match.');
+        return false;
+    }
+    $insert = sprintf("INSERT INTO users
+        (`username`, `email`, `password`, `status`, `name`)
+        VALUES('%s', '%s', '%s', 1, '%s')",
+        mysql_real_escape_string($data['username']),
+        mysql_real_escape_string($data['email']),
+        MD5($data['password']),
+        mysql_real_escape_string($data['full_name']));
+    $res = mysql_query($insert) or die(mysql_error().$insert);
+    return true;
+}
+
 /*
 function authenticate($username,$password); 
 	validate user entered username and password with database username and password 
