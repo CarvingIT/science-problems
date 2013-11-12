@@ -68,7 +68,7 @@ public function authenticate($username, $password){
         md5($password));
     $res = mysql_query($select);
     if(!$res){
-        $this->setError("auth_failure");
+        $this->setError("Authentication failure. Please try again.");
         return false;
     }
 	if(mysql_num_rows($res) > 0){

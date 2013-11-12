@@ -3,12 +3,12 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes/php_header.php';
 
 if($_POST){
 }
-$users = $u->getUsers();
+$problems = $u->getProblemsAwaitingApproval();
 ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Manage Users</title>
+		<title>Problems awaiting approval</title>
 		<?php include 'includes/html_head_include.php'; ?>
 	</head>
 	<body class="no-sidebar">
@@ -29,7 +29,7 @@ $users = $u->getUsers();
 												<!-- Content -->
 													<article class="box is-post">
 														<header>
-															<h2>Registered users</h2>
+															<h2>Problems needing approval</h2>
 														</header>
 														<p>
 <span class="error"><?php echo $error; ?></span>
@@ -37,8 +37,11 @@ $users = $u->getUsers();
 														</p>
                      <ul>
                      <?php 
-                        foreach($users as $u){
-                            echo "<li><a href=\"/update_user.php?id=$u[id]\">$u[name]</a></li>";
+                        foreach($problems as $p){
+                            echo "<li><a href=\"/p/$p[id]\">$p[title]</a></li>";
+                        }
+                        if(count($problems == 0)){
+                            echo "There are no submissions that are awaiting approval.";
                         }
                      ?>
                      </ul>

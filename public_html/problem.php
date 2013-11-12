@@ -34,6 +34,7 @@
                                                         if($u->isAdmin()){
                                                             if($problem['status'] != '1'){
                                                                 echo "<a href=\"/approve_problem.php?p=$problem[id]\">Approve</a>";
+                                                                echo " | <a href=\"/delete_problem.php?p=$problem[id]\">Delete</a>";
                                                             }
                                                         }
                                                         ?>

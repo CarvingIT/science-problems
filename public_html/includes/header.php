@@ -36,6 +36,7 @@
                                                <li class="<?php echo isCurrent('/account.php')?'current_page_item':''; ?>"><a href="#">Administer</a>
                                                <ul>
                                                     <li><a href="/manage_users.php">Manage Users</a></li>
+                                                    <li><a href="/awaiting_problems.php">Problems awaiting approval</a></li>
                                                </ul>
                                                </li>
                                                 <?php

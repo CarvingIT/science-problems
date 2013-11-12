@@ -110,5 +110,32 @@ public function getUsers($criteria){
     return $users;
 }
 
+/*
+Update User details
+*/
+public function updateUser($data){
+    if(empty($data['password'])){
+    $update = sprintf("UPDATE users
+        SET `name` = '%s'
+        WHERE id = '%s'",
+        mysql_real_escape_string($data['full_name']),
+        mysql_real_escape_string($data['id']));
+    }
+    else{
+        if($data['password'] != $data['password_again']){
+            $this->setError("Passwords don't match.");
+            return false;
+        }
+        $update = sprintf("UPDATE users
+            SET `name` = '%s', `password` = '%s'
+            WHERE id = '%s'",
+            mysql_real_escape_string($data['full_name']),
+            MD5($data['password']),
+            mysql_real_escape_string($data['id']));
+    }
+    $res = mysql_query($update) or die(mysql_error().$update);
+    return true;
+}
+
 }//class ends
 
