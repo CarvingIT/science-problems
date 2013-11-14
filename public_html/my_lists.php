@@ -1,8 +1,11 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT'].'/includes/php_header.php';
 
-if($_POST){
+if($_POST['action'] == 'Create a new list'){
     $u->createList($_POST['title']);
+}
+else if($_POST['action'] == 'Update'){
+    $u->renameList($_POST['list_id'],$_POST['title']);
 }
 $my_lists = $u->getMyLists();
 ?>
@@ -35,23 +38,40 @@ $my_lists = $u->getMyLists();
 														<p>
 <span class="error"><?php echo $error; ?></span>
 <span class="message"><?php echo $msg; ?></span>
-<form class="fullwidth" method="post" action="">
-<label>Title</label>
-<input type="text" name="title" value="" required/>
-<input type="submit" value="Create a new list"/>
+<form class="fullwidth" method="post" action="/my_lists.php">
+<label>Name of the list</label>
+<input type="text" name="title" value="<?php echo $_GET['name']; ?>" required/>
+<?php
+if(empty($_GET['id'])){
+?>
+<input name="action" type="submit" value="Create a new list"/>
+<?php }else{ ?>
+<input type="hidden" value="<?php echo $_GET['id']; ?>" name="list_id" />
+<input name="action" type="submit" value="Update"/>
+<?php } ?>
 </form>
 														</p>
                      <h3>Lists</h3>
-                     <ul>
+                     <table>
                      <?php 
                         if(count($my_lists) == 0){
                             echo "<p>You have created no lists yet. Create one now.</p>";
                         }
                         foreach($my_lists as $l){
-                            echo "<li><a href=\"/l/u-".$u->user_profile['username']."/$l[short_name]\">$l[short_name]</a></li>";
+                            echo "<tr>
+                            <td width=\"250\">
+                            <a href=\"/l/u-".$u->user_profile['username']."/$l[short_name]\">$l[short_name]</a>
+                            </td>
+                            <td width=\"70\">
+                            <a href=\"/my_lists.php?id=$l[id]&name=$l[short_name]\">Rename</a>
+                            </td>
+                            <td width=\"50\">
+                            <a href=\"/delete_list.php?id=$l[id]\">Delete</a>
+                            </td>
+                            </tr>";
                         }
                      ?>
-                     </ul>
+                     </table>
 													</article>
 
 											</div>

@@ -60,6 +60,36 @@ public function createList($listname){
 }
 
 /*
+Rename a list
+*/
+public function renameList($list_id, $listname){
+    if(!$this->isListMine($list_id)){
+        $this->setError("Not your list.");
+        return false;
+    }
+    $update = sprintf("UPDATE lists SET `short_name` = '%s'
+        WHERE id = '%s'",
+        mysql_real_escape_string($listname),
+        mysql_real_escape_string($list_id));
+    mysql_query($update) or die(mysql_error() . $update);
+    return true;
+}
+
+/*
+Delete one's own list
+*/
+public function deleteList($list_id){
+    if(!$this->isListMine($list_id)){
+        $this->setError("Not your list.");
+        return false;
+    }
+    $delete = sprintf("DELETE FROM lists 
+        WHERE id = '%s' AND `owner` = '$this->user_id'",
+        mysql_real_escape_string($list_id));
+    mysql_query($delete) or die(mysql_error() . $delete);
+    return true;
+}
+/*
 Add a problem to a list
 */
 public function addProblemToList($problem_id, $list_id){
@@ -120,10 +150,10 @@ Check if the logged in user owns the list
 */
 private function isListMine($list_id){
     $select = sprintf("SELECT 1 FROM lists
-        WHERE id='%s' AND `owner` = $this->user_id",
+        WHERE id='%s' AND `owner` = '$this->user_id'",
         mysql_real_escape_string($list_id));
     $res = mysql_query($select) or die(mysql_error().$select);
-    if(mysql_num_rows($res > 0))
+    if(mysql_num_rows($res) > 0)
         return true;
     return false;
 }
