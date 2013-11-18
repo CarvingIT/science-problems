@@ -90,6 +90,23 @@ public function deleteList($list_id){
     return true;
 }
 /*
+listAction()
+If a problem is in a list, remove it
+Else add to the list
+*/
+public function listAction($problem_id, $list_id){
+    $list_problems = $this->getProblemsOfList($list_id);
+    if(in_array($problem_id, $list_problems)){
+        //remove from the list
+        return $this->removeProblemFromList($problem_id,$list_id);
+    }
+    else{
+        //add to the list
+        return $this->addProblemToList($problem_id,$list_id);
+    }
+}
+
+/*
 Add a problem to a list
 */
 public function addProblemToList($problem_id, $list_id){
@@ -103,8 +120,15 @@ public function addProblemToList($problem_id, $list_id){
         mysql_real_escape_string($list_id));
     $res = mysql_query($select) or die(mysql_error().$select);
     $row = mysql_fetch_assoc($res);
-    //append ",$problem_id"
-    $new_problem_string = $row['problem_ids'].','.$problem_id;
+    
+    $problems = explode(',', $row['problem_ids']);
+    $problems[] = $problem_id;
+    $problem_string = implode(',', $problems);
+
+    $new_problem_string = preg_replace('/^\s*,*/','',$problem_string);
+    $new_problem_string = preg_replace('/\s*,*$/','',$new_problem_string);
+    #$new_problem_string = preg_replace('/,,+/','',$new_problem_string);
+
     //update the table
     $update = sprintf("UPDATE lists SET problem_ids = '%s'
         WHERE id = '%s'",
@@ -136,6 +160,11 @@ public function removeProblemFromList($problem_id, $list_id){
         $new_problem_ids[] = $current_problem_ids[$i];
     }
     $new_problem_string = implode(',', $new_problem_ids);
+
+    $new_problem_string = preg_replace('/^\s*,*/','',$new_problem_string);
+    $new_problem_string = preg_replace('/\s*,*$/','',$new_problem_string);
+    #$new_problem_string = preg_replace('/,,+/','',$new_problem_string);
+
     //update the table
     $update = sprintf("UPDATE lists SET problem_ids = '%s'
         WHERE id = '%s'",

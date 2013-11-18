@@ -2,6 +2,10 @@
 <?php
     $problem = $u->getProblemById($_GET['p']);
     $solutions = $u->getSolutions($_GET['p']);
+
+    if(!empty($u->user_id)){
+        $my_lists = $u->getMyLists();
+    }
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -42,6 +46,28 @@
                                                         <p>
                                                         <?php echo $problem['mml']; ?>
                                                         </p>
+                                                        <?php if(!empty($u->user_id)){ ?>
+                                                        <p>
+                                                        <form action="/list_actions.php" method="post">
+                                                        <input type="hidden" name="p" value="<?php echo $_GET['p']; ?>"/>
+                                                        <select name="list_id" onchange="this.form.submit();">
+                                                        <option value="">List actions</option>
+                                                        <?php
+                                                            foreach($my_lists as $l){
+                                                                $problem_ids = explode(',',$l['problem_ids']);
+                                                                if(in_array($_GET['p'], $problem_ids)){
+                                                                    echo "<option value=\"$l[id]\">Remove from $l[short_name]</option>";
+                                                                }
+                                                                else{
+                                                                    echo "<option value=\"$l[id]\">Add to $l[short_name]</option>";
+                                                                }
+                                                            }
+                                                        ?>
+                                                        </select>
+                                                        </form>
+                                                        </p>
+                                                        <?php } ?>
+                                                        <p>
                                                         <?php
                                                         foreach($solutions as $s){
                                                             $submitter_profile = $u->getUserDetails($s['submitted_by']);
@@ -52,6 +78,7 @@
                                                             }
                                                         }
                                                         ?>
+                                                        </p>
                                                         <p>
                                                         <a href="/new_solution.php?p=<?php echo $problem['id']; ?>">Submit a solution</a> 
                                                         <?php
