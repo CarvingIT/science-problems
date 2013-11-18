@@ -293,9 +293,16 @@ public function getProblemsOfList($list_id){
     $res = mysql_query($select) or die(mysql_error().$select);
     $row = mysql_fetch_assoc($res);
     if(!empty($row['problem_ids'])){
-        $current_problem_ids = explode(',', $row['problem_ids']);
+        #$current_problem_ids = explode(',', $row['problem_ids']);
+        $select = "SELECT id, title FROM problems
+            WHERE id IN ($row[problem_ids])";
+        $res = mysql_query($select) or die(mysql_error() . $select);
+        $problems = array();
+        while($row = mysql_fetch_assoc($res)){
+            $problems[] = $row;
+        }
     }
-    return $current_problem_ids;
+    return $problems;
 }
 
 /*

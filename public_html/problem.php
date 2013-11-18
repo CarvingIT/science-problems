@@ -94,6 +94,7 @@
                                                         } 
                                                         }
                                                         ?>
+                                                        | <a href="/?r=<?php echo rand(); ?>">Next random problem</a> 
                                                         </p>
 														</section>
 													</article>

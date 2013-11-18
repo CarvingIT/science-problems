@@ -1,2 +1,0 @@
-* Facility to import problems and solutions
-* Search 

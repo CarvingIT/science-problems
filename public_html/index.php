@@ -34,7 +34,7 @@ $problem = $u->getRandomProblem();
 </p>
 <p>
                                                         <a href="/p/<?php echo $problem['id']; ?>">See the solution</a> |
-                                                        <a href="/">Next random problem</a> 
+                                                        <a href="/?r=<?php echo rand(); ?>">Next random problem</a> 
 </p>
 														</section>
 													</article>
