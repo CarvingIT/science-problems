@@ -137,5 +137,18 @@ public function updateUser($data){
     return true;
 }
 
+/*
+    Function to update the configuration of the application
+*/
+public function updateConfig($data){
+    $config = array();
+    foreach($data as $c=>$v){
+        $update = sprintf("UPDATE config SET `value` = '%s'
+                WHERE `param` = '%s'",
+                mysql_real_escape_string($v),
+                mysql_real_escape_string($c));
+        mysql_query($update) or die(mysql_error() . $update);
+    }
+    return true;
+}
 }//class ends
-
