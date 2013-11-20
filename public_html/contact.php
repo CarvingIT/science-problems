@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Science problems</title>
+		<title>Science problems - Contact</title>
 		<?php include 'includes/html_head_include.php'; ?>
 	</head>
 	<body class="no-sidebar">
@@ -27,8 +27,6 @@
 															<span class="byline">Fill out the form below to get in touch with us.</span>
 														</header>
 <form class="fullwidth" method="post" action="">
-<label>Your username</label>
-<input type="text" name="username" value="" required/>
 <label>Subject</label>
 <input type="text" name="subject" value="" required/>
 <label>Message</label>

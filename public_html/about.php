@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Science problems</title>
+		<title>Science problems - About this website</title>
 		<?php include 'includes/html_head_include.php'; ?>
 	</head>
 	<body class="no-sidebar">

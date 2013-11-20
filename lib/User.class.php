@@ -219,11 +219,23 @@ public function getProblemById($problem_id){
 Get a random problem for the home page
 */
 public function getRandomProblem(){
+    if(!empty($this->app_config['random_list_id'])){
+        return $this->getRandomProblemFromRandomList();
+    }
     $select = "SELECT * FROM problems 
         WHERE status = 1 
         ORDER BY rand() LIMIT 1";
     $res = mysql_query($select);
     return mysql_fetch_assoc($res);
+}
+
+/*
+Get a random problem from the list defined in the config
+*/
+private function getRandomProblemFromRandomList(){
+    $problems = $this->getProblemsOfList($this->app_config['random_list_id']); 
+    $random = array_rand($problems, 1); 
+    return $this->getProblemById($problems[$random]['id']);
 }
 
 /* 

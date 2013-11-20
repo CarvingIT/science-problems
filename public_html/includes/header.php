@@ -14,7 +14,11 @@
 										<nav id="nav">
 											<ul>
 												<li class="<?php echo isCurrent('/')?'current_page_item':''; ?>"><a href="/">Home</a></li>
-												<li class="<?php echo isCurrent('/about.php')?'current_page_item':''; ?>"><a href="/about.php">About</a></li>
+												<li class="<?php echo isCurrent('/about.php')?'current_page_item':''; ?>"><a href="/about.php">About</a>
+                                                <ul>
+                                                    <li><a href="/credits.php">Credits</a></li>
+                                                </ul>
+                                                </li>
 												<li class="<?php echo isCurrent('/contact.php')?'current_page_item':''; ?>"><a href="/contact.php">Contact</a></li>
                                                 <?php if(empty($u->user_id)){ ?>
 												<li class="<?php echo isCurrent('/contribute.php')?'current_page_item':''; ?>"><a href="/contribute.php">Contribute</a>
