@@ -98,6 +98,13 @@
         width:100%;
     }
 
+    form input[type="submit"]{
+        width:auto;
+        background-color:#666;
+        color:#fff;
+        margin:0 auto;
+    }
+
 	br.clear
 	{
 		clear: both;
