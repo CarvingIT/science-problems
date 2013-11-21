@@ -43,9 +43,16 @@
                                                     This application uses a javascript library - <a href="http://www.mathjax.org" target="_blank">MathJax</a>. With this library we show the content in MathML files in the way it should appear on screen - mathematically :-).
                                                  </p>
                                                  <header>
+                                                 <h3>Formulator MathML Editor</h3>
+                                                 </header>
+                                                 <p>
+                                                 Most problems and solutions created on this website were first created using MathML editor. We recommend this editor. You can download from <a href="http://sourceforge.net/projects/formulator-math/" target="_blank">here</a>.
+                                                 </p>
+                                                 <header>
                                                  <h3>Dopetrope HTML5 theme</h3>
                                                  </header>
                                                   <p>The site uses a free theme - <a href="http://html5up.net/dopetrope/" target="_blank">Dopetrope</a>. A simple but suitable responsive design for the purpose of this website.
+                                                  </p>
 														</section>
 													</article>
 

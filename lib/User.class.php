@@ -335,5 +335,17 @@ public function getProblemsSubmittedByUser($username){
     return $problems;
 }
 
+/*
+    function to send email to the webmaster of the site
+*/
+public function contactWebmaster($data){
+    $body = '';
+    foreach($data as $k=>$v){
+        $body .= "$k: $v\n";
+    }
+    $subject = $app_config['site_name'].": $data[subject]";
+    mail($app_config['webmaster_email_address'], $subject, $body);
+}
+
 }//User class ends here
 ?>
