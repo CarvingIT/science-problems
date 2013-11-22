@@ -46,7 +46,7 @@ if($_POST){
 <label>Subject</label>
 <input type="text" name="subject" value="" required/>
 <label>Message</label>
-<input type="text" name="message" value="" required/>
+<textarea name="message" required/>
 </textarea>
 <br/>
 <input type="submit"/>
