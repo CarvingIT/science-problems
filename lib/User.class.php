@@ -335,6 +335,21 @@ public function getProblemsSubmittedByUser($username){
     return $problems;
 }
 
+/* 
+Latest submissions
+*/
+public function getLatestProblems(){
+    $select = "SELECT * FROM problems
+        ORDER BY submitted DESC 
+        LIMIT 15";
+    $res = mysql_query($select) or die(mysql_error() . $select);
+    $problems = array();
+    while($row = mysql_fetch_assoc($res)){
+        $problems[] = $row;
+    }
+    return $problems;
+}
+
 /*
     function to send email to the webmaster of the site
 */

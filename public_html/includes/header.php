@@ -16,6 +16,7 @@
 												<li class="<?php echo isCurrent('/')?'current_page_item':''; ?>"><a href="/">Home</a></li>
 												<li class="<?php echo isCurrent('/about.php')?'current_page_item':''; ?>"><a href="/about.php">About</a>
                                                 <ul>
+                                                    <li><a href="/l/latest">Latest submissions</a></li>
                                                     <li><a href="/credits.php">Credits</a></li>
                                                 </ul>
                                                 </li>

@@ -1,6 +1,9 @@
 <?php include 'includes/php_header.php'; ?>
 <?php
-    if(!empty($_GET['u'])){
+    if($_GET['type'] == 'latest'){
+        $problems = $u->getLatestProblems();
+    }
+    else if(!empty($_GET['u'])){
         $problems = $u->getProblemsOfUserList($_GET['u'], empty($_GET['list'])?'all':$_GET['list']);
     }
     $problem_count = count($problems);
@@ -29,11 +32,19 @@
 												<!-- Content -->
 													<article class="box is-post">
 														<header>
+                                                            <?php 
+                                                            if(!empty($_GET['u'])){ ?>
 															<h2>Problem List - <?php echo $_GET['u'].'/'.$_GET['list']."($problem_count)"; ?></h2>
+                                                            <?php }else if($_GET['type'] == 'latest'){ ?>
+                                                            <h2>Latest submissions</h2>
+                                                            <?php } ?>
                   <span class="byline">
-                  <?php if($problem_count > 0){ ?>
+                  <?php 
+                    if($problem_count > 0){ 
+                        if(!empty($_GET['u'])){ 
+                  ?>
                   <a href="/set_list.php?list_path=<?php echo $_SERVER['REQUEST_URI']; ?>">Play this list!</a>
-                  <?php } else{ ?>
+                  <?php }} else{ ?>
                     There currently are no problems in this list.
                   <?php } ?>
                   </span>
