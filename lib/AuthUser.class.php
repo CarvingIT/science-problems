@@ -11,6 +11,31 @@ public function __construct($user_id){
     }
 }
 
+/*
+Update User profile
+*/
+public function updateAccount($data){
+    if(empty($data['password'])){
+    $update = sprintf("UPDATE users
+        SET `name` = '%s'
+        WHERE id = '$this->user_id'",
+        mysql_real_escape_string($data['full_name']));
+    }
+    else{
+        if($data['password'] != $data['password_again']){
+            $this->setError("Passwords don't match.");
+            return false;
+        }
+        $update = sprintf("UPDATE users
+            SET `name` = '%s', `password` = '%s'
+            WHERE id = '$this->user_id'",
+            mysql_real_escape_string($data['full_name']),
+            MD5($data['password']));
+    }
+    $res = mysql_query($update) or die(mysql_error().$update);
+    return true;
+}
+
 /* The following function adds a new problem.
 The status will be unverified.
 Logged in user will not be required to fill in captcha and other fields

@@ -37,7 +37,7 @@
                                                     </ul>
                                                 </li>
                                                 <?php if($u->isAdmin()){ ?>
-                                               <li class="<?php echo isCurrent('/account.php')?'current_page_item':''; ?>"><a href="#">Administer</a>
+                                               <li><a href="#">Administer</a>
                                                <ul>
                                                     <li><a href="/configuration.php">Configuration</a></li>
                                                     <li><a href="/manage_users.php">Manage Users</a></li>

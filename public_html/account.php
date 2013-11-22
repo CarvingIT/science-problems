@@ -3,6 +3,12 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes/php_header.php';
 
 if($_POST){
     //update account
+    if($u->updateAccount($_POST)){
+        $msg = "Account information updated successfully.";
+    }
+    else{
+        $error = $u->error;
+    }
 }
 ?>
 <!DOCTYPE HTML>
@@ -33,8 +39,16 @@ if($_POST){
 														</header>
 														<p>
 <span class="error"><?php echo $u->error; ?></span>
+<span class="message"><?php echo $msg; ?></span>
 <form class="fullwidth" method="post" action="">
-ACCOUNT INFO WITH FIELDS TO UPDATE
+<label>Username: <?php echo $u->user_profile['username']; ?></label><br/>
+<label>Email: <?php echo $u->user_profile['email']; ?></label><br/>
+<label>Name</label>
+<input type="text" name="full_name" value="<?php echo $u->user_profile['name']; ?>"/>
+<label>Password</label>
+<input type="password" name="password" value=""/>
+<label>Password again</label>
+<input type="password" name="password_again" value=""/>
 <br/>
 <input type="submit"/>
 </form>
