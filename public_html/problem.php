@@ -82,18 +82,18 @@
                                                             echo "<h3>Solution submitted by $submitter_profile[name]</h3>";
                                                             echo "<p>$s[solution]</p>";
                                                             if($u->isAdmin()){
-                                                                echo "<p><a onclick=\"return confirm('Are you sure you want to delete this solution?');\" href=\"/delete_solution.php?s=$s[id]\">Delete this solution</a>";
+                                                                echo "<p><a onclick=\"return confirm('Are you sure you want to delete this solution?');\" href=\"/delete_solution.php?s=$s[id]\"><img src=\"/images/delete.png\" title=\"Delete this solution\"></a>";
                                                             }
                                                         }
                                                         ?>
                                                         </p>
                                                         <p>
-                                                        <a href="/new_solution.php?p=<?php echo $problem['id']; ?>">Submit a solution</a> 
+                                                        <a href="/new_solution.php?p=<?php echo $problem['id']; ?>"><img src="/images/solutions.png" title="Submit a solution"></a> 
                                                         <?php
                                                         if(!empty($_SESSION['list_problems'])){
                                                             if(count($_SESSION['list_problems']) > ($_SESSION['current_list_offset'] + 1)){
                                                         ?>
-                                                        | <a href="/next_in_list.php">Next problem in my list</a> 
+                                                        | <a href="/next_in_list.php"><img src="/images/next.png" title="Next problem in my list"></a> 
                                                         | <a href="/exit_list.php">Exit list</a>
                                                         <?php }else{
                                                         ?>
