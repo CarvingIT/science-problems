@@ -63,10 +63,10 @@ if(empty($_GET['id'])){
                             <a href=\"/l/u-".$u->user_profile['username']."/$l[short_name]\">$l[short_name]</a>
                             </td>
                             <td width=\"70\">
-                            <a href=\"/my_lists.php?id=$l[id]&name=$l[short_name]\">Rename</a>
+                            <a href=\"/my_lists.php?id=$l[id]&name=$l[short_name]\"><img src=\"/images/edit.png\" title=\"Rename\"></a>
                             </td>
                             <td width=\"50\">
-                            <a href=\"/delete_list.php?id=$l[id]\">Delete</a>
+                            <a href=\"/delete_list.php?id=$l[id]\"><img src=\"/images/delete.png\" title=\"Delete\"></a>
                             </td>
                             </tr>";
                         }
