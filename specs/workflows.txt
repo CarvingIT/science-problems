@@ -13,9 +13,6 @@ Administration of problems
 =========================
 * Search field to find problems
 * Mark a problem as duplicate of an earlier submitted problem.
-* Delete a problem 
-    - If a problem has solutions associated with it, a warning message shows up
-* Verify a problem (i.e. accept a problem)
 
 Checks to be performed
 ----------------------
@@ -24,8 +21,6 @@ Checks to be performed
 Administration of solutions
 ===========================
 * Search field
-* Show all solutions associated with problems
-* Button/link to approve a solution
 
 User Interface
 ==============
