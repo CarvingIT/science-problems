@@ -52,6 +52,20 @@ public function submitProblem($data){
         $this->setError(mysql_error().$insert);
         return false;
     }
+    if(!empty($data['figure'])){
+        //get the problem id
+        $problem_id = mysql_insert_id();
+        //get filetype from the data
+        $finfo = new finfo(FILEINFO_MIME);
+        $filetype = $finfo->buffer($data['figure']);
+        //insert into the figures table
+        $insert = sprintf("INSERT INTO figures
+            (`problem_id`, `figure`, `filetype`)
+            VALUES('%s', '%s', '$filetype')",
+            mysql_real_escape_string($problem_id),
+            mysql_real_escape_string($data['figure']));
+        mysql_query($insert) or die(mysql_error().$insert);
+    }
     return true;
 }
 
@@ -120,7 +134,11 @@ If a problem is in a list, remove it
 Else add to the list
 */
 public function listAction($problem_id, $list_id){
-    $list_problems = $this->getProblemsOfList($list_id);
+    $problems_in_list = $this->getProblemsOfList($list_id);
+    $list_problems = array();
+    foreach($problems_in_list as $p){
+        $list_problems[] = $p['id'];
+    }
     if(in_array($problem_id, $list_problems)){
         //remove from the list
         return $this->removeProblemFromList($problem_id,$list_id);

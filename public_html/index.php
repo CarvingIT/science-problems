@@ -1,6 +1,7 @@
 <?php include 'includes/php_header.php'; ?>
 <?php
 $problem = $u->getRandomProblem();
+$figures = $u->getFiguresOfProblem($problem['id']);
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -32,6 +33,13 @@ $problem = $u->getRandomProblem();
 <p>
 <?php echo $problem['mml']; ?>
 </p>
+                                                        <p>
+                                                        <?php
+                                                            foreach($figures as $f){
+                                                            echo "<img src=\"/figure.php?fig=$f\"/><br/>";
+                                                            }
+                                                        ?>
+                                                        </p>
 <p>
                                                         <a href="/p/<?php echo $problem['id']; ?>">See the solution</a> |
                                                         <a href="/?r=<?php echo rand(); ?>">Next random problem</a> 

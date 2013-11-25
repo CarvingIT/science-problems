@@ -84,6 +84,20 @@ public function deleteProblem($problem_id){
         WHERE id = '%s'",
         mysql_real_escape_string($problem_id));
     mysql_query($delete) or $this->setError(mysql_error().$delete);
+
+    //delete figures 
+    $this->deleteFiguresOfProblem($problem_id);
+    return true;
+}
+
+/* 
+Delete figures of problem
+*/
+public function deleteFiguresOfProblem($problem_id){
+    $delete = sprintf("DELETE FROM figures 
+        WHERE problem_id = '%s'",
+        mysql_real_escape_string($problem_id));
+    $res = mysql_query($delete) or die(mysql_error() . $delete);
     return true;
 }
 

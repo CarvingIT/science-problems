@@ -4,6 +4,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes/php_header.php';
 if($_POST){
     $data = $_POST;
     $data['mml'] = file_get_contents($_FILES['mml']['tmp_name']);
+    $data['figure'] = file_get_contents($_FILES['figure']['tmp_name']);
     if(!$u->submitProblem($data)){
         $error = $u->error;
     }
@@ -46,9 +47,11 @@ if($_POST){
 <label>Title</label>
 <input type="text" name="title" value="" required/>
 <label>Description</label>
-<input type="text" name="decription" value="" required/>
+<input type="text" name="description" value="" required/>
 <label>MathML file</label>
 <input type="file" name="mml" required/>
+<label>Accompanying figure (if any)</label>
+<input type="file" name="figure" />
 <br/>
 <input type="submit"/>
 </form>

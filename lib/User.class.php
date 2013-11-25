@@ -361,6 +361,30 @@ public function contactWebmaster($data){
     $subject = $app_config['site_name'].": $data[subject]";
     mail($app_config['webmaster_email_address'], $subject, $body);
 }
+/*
+*/
+public function getFiguresOfProblem($problem_id){
+    $select = sprintf("SELECT * FROM figures 
+        WHERE problem_id = '%s'
+        ORDER BY id, display_order",
+        mysql_real_escape_string($problem_id));
+    $res = mysql_query($select) or die($select . mysql_error());
+    $figures = array();
+    while($row = mysql_fetch_assoc($res)){
+        $figures[] = $row['id'];
+    }
+    return $figures;
+}
+/*
+Show an image
+*/
+public function getFigure($fig_id){
+    $select = sprintf("SELECT `filetype`, `figure` FROM figures 
+        WHERE `id` = '%s'",
+        mysql_real_escape_string($fig_id));
+    $res = mysql_query($select) or die(mysql_error() . $select);
+    return mysql_fetch_assoc($res);
+}
 
 }//User class ends here
 ?>

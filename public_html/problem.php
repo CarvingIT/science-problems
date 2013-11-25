@@ -1,6 +1,7 @@
 <?php include 'includes/php_header.php'; ?>
 <?php
     $problem = $u->getProblemById($_GET['p']);
+    $figures = $u->getFiguresOfProblem($_GET['p']);
     $solutions = $u->getSolutions($_GET['p']);
 
     if(!empty($u->user_id)){
@@ -45,6 +46,13 @@
                                                         </p>
                                                         <p>
                                                         <?php echo $problem['mml']; ?>
+                                                        </p>
+                                                        <p>
+                                                        <?php
+                                                            foreach($figures as $f){
+                                                            echo "<img src=\"/figure.php?fig=$f\"/><br/>";
+                                                            }
+                                                        ?>
                                                         </p>
                                                         <?php if(!empty($u->user_id)){ ?>
                                                         <p>
