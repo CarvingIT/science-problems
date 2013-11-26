@@ -49,13 +49,13 @@
                   <?php } ?>
                   </span>
 														</header>
-                                                        <ul>
+                                                        <ol>
                                                         <?php
                                                         foreach($problems as $p){
                                                             echo "<li><a href=\"/p/$p[id]\" title=\"$p[title]\">$p[title]</a></li>";
                                                         }
                                                         ?>
-                                                        </ul>
+                                                        </ol>
 														</section>
 													</article>
 

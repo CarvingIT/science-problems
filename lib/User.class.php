@@ -306,7 +306,7 @@ public function getProblemsOfList($list_id){
     $row = mysql_fetch_assoc($res);
     if(!empty($row['problem_ids'])){
         #$current_problem_ids = explode(',', $row['problem_ids']);
-        $select = "SELECT id, title FROM problems
+        $select = "SELECT id, title, mml FROM problems
             WHERE id IN ($row[problem_ids])";
         $res = mysql_query($select) or die(mysql_error() . $select);
         $problems = array();
