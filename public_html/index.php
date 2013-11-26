@@ -29,8 +29,8 @@ $figures = $u->getFiguresOfProblem($problem['id']);
 														<header>
 															<h2>Random problem</h2>
  <span class="no-print">
- <a href="/p/<?php echo $problem['id']; ?>"><img src="/images/solutions.png" title="See the solution"></a> 
- <a href="/?r=<?php echo rand(); ?>"><img src="/images/next.png" title="Next random problem"></a> 
+ <a href="/p/<?php echo $problem['id']; ?>"><img src="/images/lit_bulb.png" title="See the solution"></a> 
+ <a href="/?r=<?php echo rand(); ?>"><img src="/images/reload.png" title="Next random problem"></a> 
  </span>
 															<span class="byline"><?php echo $problem['title']; ?></span>
 														</header>
@@ -46,8 +46,8 @@ $figures = $u->getFiguresOfProblem($problem['id']);
                                                         </p>
 <p>
  <span class="no-print">
- <a href="/p/<?php echo $problem['id']; ?>"><img src="/images/solutions.png" title="See the solution"></a> 
- <a href="/?r=<?php echo rand(); ?>"><img src="/images/next.png" title="Next random problem"></a> 
+ <a href="/p/<?php echo $problem['id']; ?>"><img src="/images/lit_bulb.png" title="See the solution"></a> 
+ <a href="/?r=<?php echo rand(); ?>"><img src="/images/reload.png" title="Next random problem"></a> 
  </span>
 </p>
 														</section>

@@ -741,3 +741,8 @@
         display: none !important;
     }
 }
+@media screen{
+    .print{
+        display:none !important;
+    }
+}

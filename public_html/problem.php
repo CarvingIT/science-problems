@@ -40,7 +40,7 @@
                                                             if($problem['status'] != '1'){
                                                                 echo "<a href=\"/approve_problem.php?p=$problem[id]\">Approve</a>";
                                                             }
-                                                                echo "<a href=\"/delete_problem.php?p=$problem[id]\">Delete this problem</a>";
+                                                                echo "<a href=\"/delete_problem.php?p=$problem[id]\" title=\"Delete this problem\"><img src=\"/images/delete.png\"/></a>";
                                                         }
                                                         ?>
                                                         </p>
@@ -89,21 +89,21 @@
                                                         ?>
                                                         </p>
                                                         <p class="no-print">
-                                                        <a href="/new_solution.php?p=<?php echo $problem['id']; ?>"><img src="/images/solutions.png" title="Submit a solution"></a> 
+                                                        <a href="/new_solution.php?p=<?php echo $problem['id']; ?>"><img src="/images/lit_bulb.png" title="Submit a solution"></a> 
                                                         <?php
                                                         if(!empty($_SESSION['list_problems'])){
                                                             if(count($_SESSION['list_problems']) > ($_SESSION['current_list_offset'] + 1)){
                                                         ?>
-                                                        | <a href="/next_in_list.php"><img src="/images/next.png" title="Next problem in my list"></a> 
-                                                        | <a href="/exit_list.php">Exit list</a>
+                                                         <a href="/next_in_list.php"><img src="/images/next.png" title="Next problem in my list"></a> 
+                                                         <a href="/exit_list.php" title="Exit list"><img src="/images/exit_list.png"/></a>
                                                         <?php }else{
                                                         ?>
-                                                        | You have reached the end of the list. <a href="/exit_list.php">Exit list</a>.
+                                                         You have reached the end of the list. <a href="/exit_list.php">Exit list</a>.
                                                         <?php
                                                         } 
                                                         }
                                                         ?>
-                                                        | <a href="/?r=<?php echo rand(); ?>">Next random problem</a> 
+                                                         <a href="/?r=<?php echo rand(); ?>"><img src="/images/reload.png" title="Next random problem"/></a> 
                                                         </p>
 														</section>
 													</article>
