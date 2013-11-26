@@ -34,7 +34,7 @@
 														<header>
                                                             <?php 
                                                             if(!empty($_GET['u'])){ ?>
-															<h2>Problem List - <?php echo $_GET['u'].'/'.$_GET['list']."($problem_count)"; ?></h2>
+															<h2 class="no-print">Problem List - <?php echo $_GET['u'].'/'.$_GET['list']."($problem_count)"; ?></h2>
                                                             <?php }else if($_GET['type'] == 'latest'){ ?>
                                                             <h2>Latest submissions</h2>
                                                             <?php } ?>
@@ -43,19 +43,17 @@
                     if($problem_count > 0){ 
                         if(!empty($_GET['u'])){ 
                   ?>
-                  <a href="/set_list.php?list_path=<?php echo $_SERVER['REQUEST_URI']; ?>">Play this list!</a>
+                  <a class="no-print" href="/set_list.php?list_path=<?php echo $_SERVER['REQUEST_URI']; ?>">Play this list!</a>
                   <?php }} else{ ?>
                     There currently are no problems in this list.
                   <?php } ?>
                   </span>
 														</header>
-                                                        <ol>
                                                         <?php
                                                         foreach($problems as $p){
-                                                            echo "<li><a href=\"/p/$p[id]\" title=\"$p[title]\">$p[title]</a></li>";
+                                                            echo "$p[mml]<br/><a class=\"no-print\" href=\"/p/$p[id]\" title=\"$p[title]\">Solution</a><hr/>";
                                                         }
                                                         ?>
-                                                        </ol>
 														</section>
 													</article>
 

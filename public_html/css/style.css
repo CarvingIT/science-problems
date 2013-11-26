@@ -729,6 +729,11 @@
 			margin: 0;
 		}
 
+
+.MathJax_Display{
+    text-align:left !important;
+}
+
 @media print
 {    
     .no-print, .no-print *

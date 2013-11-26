@@ -1,5 +1,5 @@
 		<!-- Header Wrapper -->
-			<div id="header-wrapper">
+			<div id="header-wrapper" class="no-print">
 				<div class="container">
 					<div class="row">
 						<div class="12u">

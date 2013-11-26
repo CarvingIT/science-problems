@@ -34,7 +34,7 @@
 														<header>
 															<h2><?php echo $problem['title']; ?></h2>
 														</header>
-                                                        <p>
+                                                        <p class="no-print">
                                                         <?php
                                                         if($u->isAdmin()){
                                                             if($problem['status'] != '1'){
@@ -56,7 +56,7 @@
                                                         </p>
                                                         <?php if(!empty($u->user_id)){ ?>
                                                         <p>
-                                                        <form action="/list_actions.php" method="post">
+                                                        <form action="/list_actions.php" method="post" class="no-print">
                                                         <input type="hidden" name="p" value="<?php echo $_GET['p']; ?>"/>
                                                         <select name="list_id" onchange="this.form.submit();">
                                                         <option value="">List actions</option>
@@ -75,19 +75,20 @@
                                                         </form>
                                                         </p>
                                                         <?php } ?>
-                                                        <p>
+                                                        <hr/>
+                                                        <p class="no-print">
                                                         <?php
                                                         foreach($solutions as $s){
                                                             $submitter_profile = $u->getUserDetails($s['submitted_by']);
-                                                            echo "<h3>Solution submitted by $submitter_profile[name]</h3>";
+                                                            echo "<h3 class=\"no-print\">Solution submitted by $submitter_profile[name]</h3>";
                                                             echo "<p>$s[solution]</p>";
                                                             if($u->isAdmin()){
-                                                                echo "<p><a onclick=\"return confirm('Are you sure you want to delete this solution?');\" href=\"/delete_solution.php?s=$s[id]\"><img src=\"/images/delete.png\" title=\"Delete this solution\"></a>";
+                                                                echo "<a class=\"no-print\" onclick=\"return confirm('Are you sure you want to delete this solution?');\" href=\"/delete_solution.php?s=$s[id]\"><img src=\"/images/delete.png\" title=\"Delete this solution\"></a>";
                                                             }
                                                         }
                                                         ?>
                                                         </p>
-                                                        <p>
+                                                        <p class="no-print">
                                                         <a href="/new_solution.php?p=<?php echo $problem['id']; ?>"><img src="/images/solutions.png" title="Submit a solution"></a> 
                                                         <?php
                                                         if(!empty($_SESSION['list_problems'])){

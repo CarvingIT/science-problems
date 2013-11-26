@@ -1,5 +1,5 @@
 		<!-- Footer Wrapper -->
-			<div id="footer-wrapper">
+			<div id="footer-wrapper" class="no-print">
 				
 				<!-- Footer -->
 					<section id="footer" class="container">
