@@ -38,7 +38,7 @@
                                                         <?php
                                                         if($u->isAdmin()){
                                                             if($problem['status'] != '1'){
-                                                                echo "<a href=\"/approve_problem.php?p=$problem[id]\">Approve</a>";
+                                                                echo "<a href=\"/approve_problem.php?p=$problem[id]\" title=\"Approve\"><img src=\"/images/correct.png\"/></a>";
                                                             }
                                                                 echo "<a href=\"/delete_problem.php?p=$problem[id]\" title=\"Delete this problem\"><img src=\"/images/delete.png\"/></a>";
                                                         }
@@ -50,7 +50,7 @@
                                                         <p>
                                                         <?php
                                                             foreach($figures as $f){
-                                                            echo "<img src=\"/figure.php?fig=$f\"/><br/>";
+                                                            echo "<img class=\"figure\" src=\"/figure.php?fig=$f\"/><br/>";
                                                             }
                                                         ?>
                                                         </p>

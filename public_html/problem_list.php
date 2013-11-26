@@ -52,7 +52,12 @@
 														</header>
                                                         <?php
                                                         foreach($problems as $p){
-                                                            echo "$p[mml]<br/><a class=\"no-print\" title=\"Solution\" href=\"/p/$p[id]\" title=\"$p[title]\"><img src=\"/images/lit_bulb.png\"/></a><hr/>";
+                                                            echo "$p[mml]<br/><a class=\"no-print\" title=\"Solution\" href=\"/p/$p[id]\" title=\"$p[title]\"><img src=\"/images/lit_bulb.png\"/></a>";
+                                                            $figures = $u->getFiguresOfProblem($p['id']);
+                                                            foreach($figures as $f){
+                                                                echo "<img class=\"figure\" src=\"/figure.php?fig=$f\"/><br/>";
+                                                            }
+                                                            echo "<hr/>";
                                                         }
                                                         ?>
 														</section>

@@ -734,6 +734,10 @@
     text-align:left !important;
 }
 
+img.figure{
+    max-width:500px;
+}
+
 @media print
 {    
     .no-print, .no-print *
