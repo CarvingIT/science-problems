@@ -351,8 +351,9 @@ Latest submissions
 */
 public function getLatestProblems(){
     $select = "SELECT * FROM problems
+        WHERE status = 1
         ORDER BY submitted DESC 
-        LIMIT 15";
+        LIMIT 20";
     $res = mysql_query($select) or die(mysql_error() . $select);
     $problems = array();
     while($row = mysql_fetch_assoc($res)){

@@ -48,6 +48,16 @@ public function approveProblem($problem_id){
     return true;
 }
 /*
+Disapprove a problem. Sets status to 1
+*/
+public function disapproveProblem($problem_id){
+    $update = sprintf("UPDATE problems
+        SET status = 0 WHERE id = '%s'",
+        mysql_real_escape_string($problem_id));
+    mysql_query($update) or $this->setError(mysql_error().$update);
+    return true;
+}
+/*
 Approve a solution. Sets status to 1
 */
 public function approveSolution($solution_id){

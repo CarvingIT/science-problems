@@ -46,6 +46,9 @@
                                                             if($problem['status'] != '1'){
                                                                 echo "<a href=\"/approve_problem.php?p=$problem[id]\" title=\"Approve\"><img src=\"/images/correct.png\"/></a>";
                                                             }
+                                                            else{
+                                                                echo "<a href=\"/disapprove_problem.php?p=$problem[id]\" title=\"Disapprove\"><img src=\"/images/wrong.png\"/></a>";
+                                                            }
                                                                 echo "<a href=\"/edit_problem.php?p=$problem[id]\" title=\"Edit this problem\"><img src=\"/images/edit.png\"/></a>";
                                                                 echo "<a onclick=\"return confirm('Are you sure you want to delete this problem?')\" href=\"/delete_problem.php?p=$problem[id]\" title=\"Delete this problem\"><img src=\"/images/delete.png\"/></a>";
                                                         }
