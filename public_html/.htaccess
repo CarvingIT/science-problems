@@ -1,7 +1,12 @@
 RewriteEngine On
 RewriteRule ^p/(.*)$ /problem.php?p=$1 [L]
+RewriteRule ^problem/(.*)$ /problem.php?path=$1 [L]
+
+
 RewriteRule ^l/latest$ /problem_list.php?type=latest [L]
 RewriteRule ^l/u-(.*)/(.*)$ /problem_list.php?u=$1&list=$2 [L]
+
+
 RewriteRule ^mml/p/([^\/]*)$ /mml.php?type=p&p=$1 [L]
 RewriteRule ^mml/s/([^\/]*)$ /mml.php?type=s&p=$1&n=1 [L]
 RewriteRule ^mml/s/([^\/]*)/([^\/]*)?$ /mml.php?type=s&p=$1&n=$2 [L]

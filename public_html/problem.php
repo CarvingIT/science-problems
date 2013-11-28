@@ -1,8 +1,14 @@
 <?php include 'includes/php_header.php'; ?>
 <?php
-    $problem = $u->getProblemById($_GET['p']);
-    $figures = $u->getFiguresOfProblem($_GET['p']);
-    $solutions = $u->getSolutions($_GET['p']);
+    if(!empty($_GET['p'])){
+        $problem_id = $_GET['p'];
+    }
+    else if(!empty($_GET['path'])){
+        $problem_id = $u->getProblemIdFromPath($_GET['path']);
+    }
+    $problem = $u->getProblemById($problem_id);
+    $figures = $u->getFiguresOfProblem($problem_id);
+    $solutions = $u->getSolutions($problem_id);
 
     if(!empty($u->user_id)){
         $my_lists = $u->getMyLists();
@@ -40,7 +46,11 @@
                                                             if($problem['status'] != '1'){
                                                                 echo "<a href=\"/approve_problem.php?p=$problem[id]\" title=\"Approve\"><img src=\"/images/correct.png\"/></a>";
                                                             }
-                                                                echo "<a href=\"/delete_problem.php?p=$problem[id]\" title=\"Delete this problem\"><img src=\"/images/delete.png\"/></a>";
+                                                                echo "<a href=\"/edit_problem.php?p=$problem[id]\" title=\"Edit this problem\"><img src=\"/images/edit.png\"/></a>";
+                                                                echo "<a onclick=\"return confirm('Are you sure you want to delete this problem?')\" href=\"/delete_problem.php?p=$problem[id]\" title=\"Delete this problem\"><img src=\"/images/delete.png\"/></a>";
+                                                        }
+                                                        else if($problem['submitted_by'] == $u->user_id){
+                                                                echo "<a href=\"/edit_problem.php?p=$problem[id]\" title=\"Edit this problem\"><img src=\"/images/edit.png\"/></a>";
                                                         }
                                                         ?>
                                                         </p>
@@ -57,13 +67,13 @@
                                                         <?php if(!empty($u->user_id)){ ?>
                                                         <p>
                                                         <form action="/list_actions.php" method="post" class="no-print">
-                                                        <input type="hidden" name="p" value="<?php echo $_GET['p']; ?>"/>
+                                                        <input type="hidden" name="p" value="<?php echo $problem_id; ?>"/>
                                                         <select name="list_id" onchange="this.form.submit();">
                                                         <option value="">List actions</option>
                                                         <?php
                                                             foreach($my_lists as $l){
                                                                 $problem_ids = explode(',',$l['problem_ids']);
-                                                                if(in_array($_GET['p'], $problem_ids)){
+                                                                if(in_array($problem_id, $problem_ids)){
                                                                     echo "<option value=\"$l[id]\">Remove from $l[short_name]</option>";
                                                                 }
                                                                 else{

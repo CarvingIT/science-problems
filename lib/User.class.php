@@ -202,6 +202,17 @@ public function changePassword($data){
         }
     }
 }
+/*
+Get problem id from Path
+*/
+public function getProblemIdFromPath($path){
+    $select = sprintf("SELECT id FROM problems
+        WHERE `path` = '%s'",
+        mysql_real_escape_string($path));
+    $res = mysql_query($select) or die(mysql_error() . $select);
+    $row = mysql_fetch_assoc($res);
+    return $row['id'];
+}
 
 /* 
 Get a problem by id
@@ -358,8 +369,8 @@ public function contactWebmaster($data){
     foreach($data as $k=>$v){
         $body .= "$k: $v\n";
     }
-    $subject = $app_config['site_name'].": $data[subject]";
-    mail($app_config['webmaster_email_address'], $subject, $body);
+    $subject = $this->app_config['site_name'].": $data[subject]";
+    mail($this->app_config['webmaster_email_address'], $subject, $body);
 }
 /*
 */

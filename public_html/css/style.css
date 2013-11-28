@@ -729,6 +729,13 @@
 			margin: 0;
 		}
 
+.message{
+    color:green;
+}
+.error{
+    color:red;
+}
+
 
 .MathJax_Display{
     text-align:left !important;

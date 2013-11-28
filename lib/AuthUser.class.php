@@ -69,6 +69,62 @@ public function submitProblem($data){
     return true;
 }
 
+public function amOwnerOfProblem($problem_id){
+    if($this->isAdmin()){
+        return true;
+    }
+
+    $select = sprintf("SELECT 1 FROM problems 
+        WHERE id = '%s' 
+        AND `submitted_by` = '$this->user_id'",
+        mysql_real_escape_string($problem_id));
+    $res = mysql_query($select) or die(mysql_error() . $select);
+    if(mysql_num_rows($res) == 1){
+        return true;
+    }
+    return false;
+}
+
+/*
+    Edit a problem
+*/
+public function editProblem($data){
+
+    if(!$this->amOwnerOfProblem($data['problem_id'])){
+        $this->setError('You can not edit this problem');
+        return false;
+    }
+
+    $problem = $this->getProblemById($data['problem_id']);
+    $mml = empty($data['mml'])?$problem['mml']:$data['mml'];
+    $path = empty($data['path'])?$problem['path']:$data['path'];
+    if(empty($path)){
+        $path = 'null'; 
+    }
+    else{
+        $path = "'$path'";
+    }
+    
+    $update = sprintf("UPDATE problems
+        SET title = '%s',
+            description = '%s',
+            status = 0,
+            mml = '%s',
+            path = $path
+            WHERE id = '%s' ",
+            mysql_real_escape_string($data['title']),
+            mysql_real_escape_string($data['description']),
+            mysql_real_escape_string($mml),
+            mysql_real_escape_string($data['problem_id']));
+    if(mysql_query($update)){
+        return true;
+    }
+    else{
+        $this->setError('There was some error.');
+        return false;
+    }
+}
+
 /*
 Submit a solution to a problem
 */

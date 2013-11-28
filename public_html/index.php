@@ -29,7 +29,11 @@ $figures = $u->getFiguresOfProblem($problem['id']);
 														<header>
 															<h2>Random problem</h2>
  <span class="no-print">
+ <?php if(!empty($problem['path'])){ ?>
+ <a href="/problem/<?php echo $problem['path']; ?>"><img src="/images/lit_bulb.png" title="See the solution"></a> 
+ <?php }else{ ?>
  <a href="/p/<?php echo $problem['id']; ?>"><img src="/images/lit_bulb.png" title="See the solution"></a> 
+ <?php } ?>
  <a href="/?r=<?php echo rand(); ?>"><img src="/images/reload.png" title="Next random problem"></a> 
  </span>
 															<span class="byline"><?php echo $problem['title']; ?></span>
@@ -46,7 +50,11 @@ $figures = $u->getFiguresOfProblem($problem['id']);
                                                         </p>
 <p>
  <span class="no-print">
+ <?php if(!empty($problem['path'])){ ?>
+ <a href="/problem/<?php echo $problem['path']; ?>"><img src="/images/lit_bulb.png" title="See the solution"></a> 
+ <?php }else{ ?>
  <a href="/p/<?php echo $problem['id']; ?>"><img src="/images/lit_bulb.png" title="See the solution"></a> 
+ <?php } ?>
  <a href="/?r=<?php echo rand(); ?>"><img src="/images/reload.png" title="Next random problem"></a> 
  </span>
 </p>
