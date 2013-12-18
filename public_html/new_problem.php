@@ -46,11 +46,13 @@ if($_POST){
 <form class="fullwidth" enctype="multipart/form-data" method="post" action="">
 <label>Title</label>
 <input type="text" name="title" value="" required/>
-<label>Keywords/Description</label>
-<input type="text" name="description" value="" required/>
-<label>MathML file</label>
+<label>Description</label>
+<input type="text" name="description" value="" />
+<label>Keywords</label>
+<input type="text" name="keywords" value="" />
+<label>MathML file. Contents of this MML file will be shown as the problem to users.</label>
 <input type="file" name="mml" required/>
-<label>Accompanying figure (if any)</label>
+<label>Accompanying figure, if any. Only png and jpg images are supported.</label>
 <input type="file" name="figure" />
 <br/>
 <input type="submit"/>

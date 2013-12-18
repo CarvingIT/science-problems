@@ -43,10 +43,11 @@ like email, name etc
 */
 public function submitProblem($data){
     $insert = sprintf("INSERT INTO problems
-        (`title`, `description`, `mml`, `status`, `submitted`, `submitted_by`)
-        VALUES('%s', '%s', '%s', 0, NOW(), $this->user_id)",
+        (`title`, `description`, `keywords`, `mml`, `status`, `submitted`, `submitted_by`)
+        VALUES('%s', '%s', '%s', '%s', 0, NOW(), $this->user_id)",
         mysql_real_escape_string($data['title']),
         mysql_real_escape_string($data['description']),
+        mysql_real_escape_string($data['keywords']),
         mysql_real_escape_string($data['mml']));
     if(!mysql_query($insert)){
         $this->setError(mysql_error().$insert);
@@ -108,12 +109,14 @@ public function editProblem($data){
     $update = sprintf("UPDATE problems
         SET title = '%s',
             description = '%s',
+            keywords = '%s',
             status = 0,
             mml = '%s',
             path = $path
             WHERE id = '%s' ",
             mysql_real_escape_string($data['title']),
             mysql_real_escape_string($data['description']),
+            mysql_real_escape_string($data['keywords']),
             mysql_real_escape_string($mml),
             mysql_real_escape_string($data['problem_id']));
     if(mysql_query($update)){

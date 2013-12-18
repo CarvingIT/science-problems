@@ -361,6 +361,14 @@ public function getLatestProblems(){
     }
     return $problems;
 }
+/*
+Search problems
+This will be replaced by some better search technique like zebra
+*/
+public function searchProblems($criteria){
+    //$criteria is an array, which can contain keys like
+    // keywords, limit, offset
+}
 
 /*
     function to send email to the webmaster of the site

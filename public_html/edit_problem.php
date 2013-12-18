@@ -51,8 +51,10 @@ if($_POST){
 <input type="hidden" name="problem_id" value="<?php echo $_GET['p']; ?>"/>
 <label>Title</label>
 <input type="text" name="title" value="<?php echo $problem['title']; ?>" required/>
-<label>Keywords/Description</label>
-<input type="text" name="description" value="<?php echo $problem['description']; ?>" required/>
+<label>Description</label>
+<input type="text" name="description" value="<?php echo $problem['description']; ?>" />
+<label>Keywords</label>
+<input type="text" name="keywords" value="<?php echo $problem['keywords']; ?>" required/>
 <?php if($u->isAdmin()){ ?> 
 <label>Path</label>
 <input type="text" name="path" value="<?php echo $problem['path']; ?>" />
