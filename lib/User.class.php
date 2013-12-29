@@ -362,15 +362,6 @@ public function getLatestProblems(){
     return $problems;
 }
 /*
-Search problems
-This will be replaced by some better search technique like zebra
-*/
-public function searchProblems($criteria){
-    //$criteria is an array, which can contain keys like
-    // keywords, limit, offset
-}
-
-/*
     function to send email to the webmaster of the site
 */
 public function contactWebmaster($data){
@@ -404,6 +395,24 @@ public function getFigure($fig_id){
         mysql_real_escape_string($fig_id));
     $res = mysql_query($select) or die(mysql_error() . $select);
     return mysql_fetch_assoc($res);
+}
+
+/*
+Search problems
+*/
+public function searchProblems($keywords, $offset=0, $limit=10){
+    $select = sprintf("SELECT id, title, mml, path, description
+            FROM problems 
+            WHERE MATCH(title, keywords, description)
+            AGAINST ('%s' IN BOOLEAN MODE)
+            LIMIT $offset, $limit",
+            mysql_real_escape_string($keywords));
+    $res = mysql_query($select) OR die(mysql_error() . $select);
+    $problems = array();
+    while($row = mysql_fetch_assoc($res)){
+        $problems[] = $row;
+    }
+    return $problems;
 }
 
 }//User class ends here

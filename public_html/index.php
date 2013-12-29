@@ -23,7 +23,7 @@ $figures = $u->getFiguresOfProblem($problem['id']);
 									<div>
 										<div class="row">
 											<div class="12u skel-cell-mainContent">
-												
+                <?php include $_SERVER['DOCUMENT_ROOT'].'/includes/searchbox.php'; ?>
 												<!-- Content -->
 													<article class="box is-post">
 														<header>

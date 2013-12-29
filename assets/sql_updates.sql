@@ -7,3 +7,9 @@ CREATE TABLE `figures` (
            `filetype` varchar(10) DEFAULT NULL,
              PRIMARY KEY (`id`)
              ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 ;
+
+-- New column for keywords in the problem table
+alter table problems add column keywords varchar(255) after description;
+
+-- search index
+create fulltext index searchindex on problems (title,keywords,description);
