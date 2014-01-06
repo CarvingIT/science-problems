@@ -53,16 +53,24 @@ public function submitProblem($data){
         $this->setError(mysql_error().$insert);
         return false;
     }
-    if(!empty($data['figure'])){
+    if(!empty($data['figure_file'])){
         //get the problem id
         $problem_id = mysql_insert_id();
         //get filetype from the data
-        $finfo = new finfo(FILEINFO_MIME);
-        $filetype = $finfo->buffer($data['figure']);
+        if(function_exists('finfo_open')){
+            $finfo = new finfo(FILEINFO_MIME);
+            $mimetype = $finfo->buffer(file_get_contents($data['figure_file']));
+        }
+        else if(function_exists('mime_content_type')){ 
+            $mimetype = mime_content_type($filename);
+        }
+        else{
+            $mimetype = 'application/octet-stream'; 
+        }
         //insert into the figures table
         $insert = sprintf("INSERT INTO figures
             (`problem_id`, `figure`, `filetype`)
-            VALUES('%s', '%s', '$filetype')",
+            VALUES('%s', '%s', '$mimetype')",
             mysql_real_escape_string($problem_id),
             mysql_real_escape_string($data['figure']));
         mysql_query($insert) or die(mysql_error().$insert);

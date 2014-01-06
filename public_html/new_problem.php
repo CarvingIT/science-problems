@@ -5,6 +5,8 @@ if($_POST){
     $data = $_POST;
     $data['mml'] = file_get_contents($_FILES['mml']['tmp_name']);
     $data['figure'] = file_get_contents($_FILES['figure']['tmp_name']);
+    $data['mml_file'] = $_FILES['mml']['tmp_name']; 
+    $data['figure_file'] = $_FILES['figure']['tmp_name']; 
     if(!$u->submitProblem($data)){
         $error = $u->error;
     }
