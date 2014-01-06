@@ -40,7 +40,7 @@ $problems = $u->getProblemsAwaitingApproval();
                         foreach($problems as $p){
                             echo "<li><a href=\"/p/$p[id]\">$p[title]</a></li>";
                         }
-                        if(count($problems == 0)){
+                        if(count($problems) == 0){
                             echo "There are no submissions that are awaiting approval.";
                         }
                      ?>
