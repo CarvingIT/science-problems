@@ -1,8 +1,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-        <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon"></link>
-		<!--link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900,300italic" rel="stylesheet" /-->
+        <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon"/>
 		<script src="/js/jquery.min.js"></script>
 		<script src="/js/jquery.dropotron.js"></script>
 		<script src="/js/config.js"></script>

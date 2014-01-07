@@ -58,7 +58,6 @@ $figures = $u->getFiguresOfProblem($problem['id']);
  <a href="/?r=<?php echo rand(); ?>"><img src="/images/reload.png" title="Next random problem"></a> 
  </span>
 </p>
-														</section>
 													</article>
 
 											</div>

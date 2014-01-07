@@ -65,7 +65,6 @@
                                                             echo "<hr/>";
                                                         }
                                                         ?>
-														</section>
 													</article>
 
 											</div>

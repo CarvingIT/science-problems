@@ -89,18 +89,16 @@
                                                         </p>
                                                         <?php } ?>
                                                         <hr/>
-                                                        <p class="no-print">
                                                         <?php
                                                         foreach($solutions as $s){
                                                             $submitter_profile = $u->getUserDetails($s['submitted_by']);
                                                             echo "<h3 class=\"no-print\">Solution submitted by $submitter_profile[name]</h3>";
-                                                            echo "<p>$s[solution]</p>";
+                                                            echo "$s[solution]";
                                                             if($u->isAdmin()){
                                                                 echo "<a class=\"no-print\" onclick=\"return confirm('Are you sure you want to delete this solution?');\" href=\"/delete_solution.php?s=$s[id]\"><img src=\"/images/delete.png\" title=\"Delete this solution\"></a>";
                                                             }
                                                         }
                                                         ?>
-                                                        </p>
                                                         <p class="no-print">
                                                         <a href="/new_solution.php?p=<?php echo $problem['id']; ?>"><img src="/images/lit_bulb.png" title="Submit a solution"></a> 
                                                         <?php
@@ -118,7 +116,6 @@
                                                         ?>
                                                          <a href="/?r=<?php echo rand(); ?>"><img src="/images/reload.png" title="Next random problem"/></a> 
                                                         </p>
-														</section>
 													</article>
 
 											</div>
