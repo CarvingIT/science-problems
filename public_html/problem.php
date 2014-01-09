@@ -95,6 +95,7 @@
                                                             echo "<h3 class=\"no-print\">Solution submitted by $submitter_profile[name]</h3>";
                                                             echo "$s[solution]";
                                                             if($u->isAdmin()){
+                                                                echo "<a class=\"no-print\" href=\"/approve_solution.php?s=$s[id]\"><img src=\"/images/correct.png\" title=\"Approve this solution\"></a>";
                                                                 echo "<a class=\"no-print\" onclick=\"return confirm('Are you sure you want to delete this solution?');\" href=\"/delete_solution.php?s=$s[id]\"><img src=\"/images/delete.png\" title=\"Delete this solution\"></a>";
                                                             }
                                                         }
