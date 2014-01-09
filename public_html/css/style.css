@@ -90,6 +90,11 @@
 			-webkit-appearance: none;
 		}
 	
+    form.fullwidth{
+        display:block;
+        width:60%;
+        margin:0 auto;
+    }
     form.fullwidth input{
         display:block;
         padding:5px;
