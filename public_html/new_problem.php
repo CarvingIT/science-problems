@@ -53,9 +53,9 @@ if($_POST){
 <label>Keywords</label>
 <input type="text" name="keywords" value="" />
 <label>MathML file. Contents of this MML file will be shown as the problem to users.</label>
-<input type="file" name="mml" required/>
+<input type="file" class="file" name="mml" required/>
 <label>Accompanying figure, if any. Only png and jpg images are supported.</label>
-<input type="file" name="figure" />
+<input type="file" class="file" name="figure" />
 <br/>
 <input type="submit"/>
 </form>

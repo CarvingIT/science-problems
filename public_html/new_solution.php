@@ -5,6 +5,8 @@ $problem = $u->getProblemById($_GET['p']);
 
 if($_POST){
     $data = $_POST;
+    $data['figure'] = file_get_contents($_FILES['figure']['tmp_name']);
+    $data['figure_file'] = $_FILES['figure']['tmp_name']; 
     $data['mml'] = file_get_contents($_FILES['mml']['tmp_name']);
     if(!$u->submitSolution($data)){
         $error = $u->error;
@@ -51,8 +53,10 @@ echo $problem['mml'];
 <span class="message"><?php echo $msg; ?></span>
 <form class="fullwidth" enctype="multipart/form-data" method="post" action="">
 <input type="hidden" name="problem_id" value="<?php echo $_GET['p']; ?>"/>
+<label>Figure (optional)</label>
+<input type="file" class="file" name="figure" />
 <label>MathML file</label>
-<input type="file" name="mml" required/>
+<input type="file" class="file" name="mml" required/>
 <br/>
 <input type="submit"/>
 </form>

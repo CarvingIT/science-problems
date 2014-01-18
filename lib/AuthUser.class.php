@@ -150,6 +150,30 @@ public function submitSolution($data){
     mysql_real_escape_string($data['problem_id']),
     mysql_real_escape_string($data['mml']));
     mysql_query($insert) or $this->setError(mysql_error(). $insert);
+
+    // insert image associated with the solution
+    if(!empty($data['figure_file'])){
+        //get the solution id
+        $solution_id = mysql_insert_id();
+        //get filetype from the data
+        if(function_exists('finfo_open')){
+            $finfo = new finfo(FILEINFO_MIME);
+            $mimetype = $finfo->buffer(file_get_contents($data['figure_file']));
+        }
+        else if(function_exists('mime_content_type')){ 
+            $mimetype = mime_content_type($filename);
+        }
+        else{
+            $mimetype = 'application/octet-stream'; 
+        }
+        //insert into the figures table
+        $insert = sprintf("INSERT INTO solution_figures
+            (`solution_id`, `figure`, `filetype`)
+            VALUES('%s', '%s', '$mimetype')",
+            mysql_real_escape_string($solution_id),
+            mysql_real_escape_string($data['figure']));
+        mysql_query($insert) or die(mysql_error().$insert);
+    }
     return true;
 }
 

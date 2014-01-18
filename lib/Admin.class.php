@@ -77,6 +77,16 @@ public function deleteSolution($solution_id){
         WHERE id = '%s'",
         mysql_real_escape_string($solution_id));
     $res = mysql_query($delete) or die(mysql_error().$delete);
+    $this->deleteSolutionFigure($solution_id);
+    return true;
+}
+
+/* Delete solution figure */
+public function deleteSolutionFigure($solution_id){
+    $delete = sprintf("DELETE FROM solution_figures
+        WHERE solution_id = '%s'",
+        mysql_real_escape_string($solution_id));
+    mysql_query($delete);
     return true;
 }
 

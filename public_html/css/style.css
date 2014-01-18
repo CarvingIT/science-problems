@@ -108,10 +108,14 @@
         -moz-box-shadow: 2px 2px 3px #666;
         -webkit-box-shadow: 2px 2px 3px #666;
         box-shadow: 2px 2px 3px #666;
-        font-size: 20px;
+        font-size: 17px;
         padding: 4px 7px;
         outline: 0;
         -webkit-appearance: none;
+    }
+    form.fullwidth input.file{
+        box-shadow:none;
+        background:none;
     }
     form.fullwidth input:focus {
          border-color: #339933;

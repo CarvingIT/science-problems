@@ -93,6 +93,9 @@
                                                         foreach($solutions as $s){
                                                             $submitter_profile = $u->getUserDetails($s['submitted_by']);
                                                             echo "<h3 class=\"no-print\">Solution submitted by $submitter_profile[name]</h3>";
+                                                            if($u->hasFigure($s['id'])){
+                                                                echo "<img src=\"/solution_figure.php?sol=$s[id]\" /><br/>";
+                                                            }
                                                             echo "$s[solution]";
                                                             if($u->isAdmin()){
                                                                 echo "<a class=\"no-print\" href=\"/approve_solution.php?s=$s[id]\"><img src=\"/images/correct.png\" title=\"Approve this solution\"></a>";

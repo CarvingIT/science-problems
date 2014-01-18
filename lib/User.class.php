@@ -265,6 +265,27 @@ public function getSolutions($problem_id){
     return $solutions;
 }
 
+/* Does a solution have figure associated with it? */
+public function hasFigure($solution_id){
+    $select = sprintf("SELECT 1 FROM solution_figures 
+        WHERE solution_id = '%s'",
+        mysql_real_escape_string($solution_id));
+    $res = mysql_query($select);
+    if(mysql_num_rows($res) > 0){
+        return true;
+    }
+    return false;
+}
+
+/* Get figure of a solution */
+public function getSolutionFigure($solution_id){
+    $select = sprintf("SELECT * FROM solution_figures 
+        WHERE solution_id = '%s'",
+        mysql_real_escape_string($solution_id));
+    $res = mysql_query($select);
+    return mysql_fetch_assoc($res);
+}
+
 /*
 Get user details
 */
