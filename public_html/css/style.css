@@ -768,6 +768,10 @@ img.figure{
     max-width:500px;
 }
 
+.sharebutton{
+    float:right;
+}
+
 @media print
 {    
     .no-print, .no-print *
