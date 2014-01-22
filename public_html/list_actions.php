@@ -1,6 +1,6 @@
 <?php include 'includes/php_header.php'; 
     if($u->listAction($_POST['p'], $_POST['list_id'])){
-        header("location:$_SERVER[HTTP_REFERER]");
+        header("location:$_SESSION[current_url]");
     }
     else{
         //following is for debugging

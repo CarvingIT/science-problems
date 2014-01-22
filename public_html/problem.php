@@ -13,6 +13,8 @@
     if(!empty($u->user_id)){
         $my_lists = $u->getMyLists();
     }
+
+    $_SESSION['current_url'] = current_page_url();
 ?>
 <!DOCTYPE HTML>
 <html>

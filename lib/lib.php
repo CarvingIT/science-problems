@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 include 'db_connect.php';
 //session_set_cookie_params('300');
 //session_regenerate_id(true);
@@ -93,8 +94,15 @@ function isCurrent($uri){
     return false;
 }
 
+function current_page_url(){
+    $page_url   = 'http';
+    if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on'){
+        $page_url .= 's';
+    }
+    return $page_url.'://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+}
+
 // calls to initialization functions
 $app_config = getConfig();
 #date_default_timezone_set('America/New_York');
-#error_reporting(0);
 ?>
