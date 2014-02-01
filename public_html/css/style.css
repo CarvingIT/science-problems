@@ -87,7 +87,7 @@
 		form select,
 		form textarea
 		{
-			-webkit-appearance: none;
+			/*-webkit-appearance: none;*/
 		}
 	
     form.fullwidth{
@@ -770,6 +770,15 @@ img.figure{
 
 .sharebutton{
     float:right;
+}
+
+.problemcheckbox{
+    float:left;
+    margin-top:-20px;
+    width:50px;
+}
+.problemcontent hr{
+    margin-bottom:20px;
 }
 
 @media print

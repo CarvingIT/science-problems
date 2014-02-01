@@ -16,6 +16,7 @@
                 });
         </script>
 		<script type="text/javascript" src="/js/mathjax/MathJax.js?config=MML_HTMLorMML-full"></script>
+		<script src="/js/functions.js"></script>
 
 		<noscript>
 			<link rel="stylesheet" href="/css/skel-noscript.css" />
