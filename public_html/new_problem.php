@@ -3,7 +3,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/includes/php_header.php';
 
 if($_POST){
     $data = $_POST;
-    $data['mml'] = file_get_contents($_FILES['mml']['tmp_name']);
+    $data['mml'] = $data['text_mml'].file_get_contents($_FILES['mml']['tmp_name']);
     $data['figure'] = file_get_contents($_FILES['figure']['tmp_name']);
     $data['mml_file'] = $_FILES['mml']['tmp_name']; 
     $data['figure_file'] = $_FILES['figure']['tmp_name']; 
@@ -46,16 +46,25 @@ if($_POST){
 <span class="error"><?php echo $error; ?></span>
 <span class="message"><?php echo $msg; ?></span>
 <form class="fullwidth" enctype="multipart/form-data" method="post" action="">
+<p>
+If your problem description contains special mathematical signs, upload an MathML file of the problem below.
+</p>
+<label>Problem description</label>
+<textarea name="text_mml">
+</textarea>
+
+<label>MathML file. Contents of this MML file will be shown as the problem to users.</label>
+<input type="file" class="file" name="mml" />
+<hr/>
+<h3>Optional fields</h3>
+<label>Accompanying figure, if any. Only png and jpg images are supported.</label>
+<input type="file" class="file" name="figure" />
 <label>Title</label>
 <input type="text" name="title" value="" required/>
 <label>Description</label>
 <input type="text" name="description" value="" />
 <label>Keywords</label>
 <input type="text" name="keywords" value="" />
-<label>MathML file. Contents of this MML file will be shown as the problem to users.</label>
-<input type="file" class="file" name="mml" required/>
-<label>Accompanying figure, if any. Only png and jpg images are supported.</label>
-<input type="file" class="file" name="figure" />
 <br/>
 <input type="submit"/>
 </form>
