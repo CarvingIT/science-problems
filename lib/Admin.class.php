@@ -185,4 +185,38 @@ public function updateConfig($data){
     }
     return true;
 }
+
+/* 
+Create a new difficulty level
+*/
+public function createDifficultyLevel($data){
+    $insert = sprintf("INSERT INTO difficulty_levels
+            (`level`, `level_order`)
+            VALUES('%s', '%s')",
+            mysql_real_escape_string($data['level']),
+            mysql_real_escape_string($data['level_order']));
+    mysql_query($insert); #or die(mysql_error() . $insert);
+}
+/*
+Update difficulty level
+*/
+public function updateDifficultyLevel($data){
+    $update = sprintf("UPDATE difficulty_levels
+            SET `level` = '%s', `level_order` = '%s'
+            WHERE id = '%s'",
+            mysql_real_escape_string($data['level']),
+            mysql_real_escape_string($data['level_order']),
+            mysql_real_escape_string($data['level_id']));
+    mysql_query($update) or die(mysql_error() . $update);
+}
+/*
+Remove a difficulty level
+*/
+public function deleteDifficultyLevel($level_id){
+    $delete = sprintf("DELETE FROM difficulty_levels
+            WHERE id = '%s'",
+            mysql_real_escape_string($level_id));
+    mysql_query($delete) or die(mysql_error() . $delete);
+}
+
 }//class ends

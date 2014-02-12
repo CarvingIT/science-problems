@@ -41,8 +41,9 @@
                                                <li><a href="#">Administer</a>
                                                <ul>
                                                     <li><a href="/configuration.php">Configuration</a></li>
-                                                    <li><a href="/manage_users.php">Manage Users</a></li>
                                                     <li><a href="/awaiting_problems.php">Problems awaiting approval</a></li>
+                                                    <li><a href="/manage_users.php">Manage Users</a></li>
+                                                    <li><a href="/manage_difficulty_levels.php">Manage Difficulty Levels</a></li>
                                                </ul>
                                                </li>
                                                 <?php

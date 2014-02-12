@@ -436,5 +436,18 @@ public function searchProblems($keywords, $offset=0, $limit=10){
     return $problems;
 }
 
+/*
+Get difficulty levels
+*/
+public function getDifficultyLevels(){
+    $select = "SELECT * FROM difficulty_levels ORDER BY level_order";
+    $res = mysql_query($select);
+    $levels = array();
+    while($row = mysql_fetch_assoc($res)){
+        $levels[] = $row;
+    }
+    return $levels;
+}
+
 }//User class ends here
 ?>
