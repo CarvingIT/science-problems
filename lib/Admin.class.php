@@ -218,5 +218,23 @@ public function deleteDifficultyLevel($level_id){
             mysql_real_escape_string($level_id));
     mysql_query($delete) or die(mysql_error() . $delete);
 }
+/*
+Set difficulty level of a problem
+*/
+public function setDifficultyLevel($problem_id, $difficulty_level_id){
+    // first remove earlier difficulty level if any
+    $delete = sprintf("DELETE FROM problem_difficulty_levels
+        WHERE problem_id = '%s'",
+        mysql_real_escape_string($problem_id));
+    mysql_query($delete) or die(mysql_error() . $delete);
+    // then set a new one
+    $insert = sprintf("INSERT INTO problem_difficulty_levels
+        (`problem_id`, `difficulty_level_id`)
+        VALUES('%s', '%s')",
+        mysql_real_escape_string($problem_id),
+        mysql_real_escape_string($difficulty_level_id));
+    mysql_query($insert) or die($insert . mysql_error());
+}
+
 
 }//class ends

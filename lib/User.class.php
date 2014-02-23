@@ -449,5 +449,17 @@ public function getDifficultyLevels(){
     return $levels;
 }
 
+/*
+Get difficulty level of a problem
+*/
+public function getDifficultyLevelOfProblem($problem_id){
+    $select = sprintf("SELECT difficulty_level_id FROM problem_difficulty_levels
+        WHERE problem_id = '%s'",
+        mysql_real_escape_string($problem_id));
+    $res = mysql_query($select) or die($select . mysql_error());
+    $row = mysql_fetch_assoc($res);
+    return $row['difficulty_level_id'];
+}
+
 }//User class ends here
 ?>

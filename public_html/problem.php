@@ -15,6 +15,14 @@
     }
 
     $_SESSION['current_url'] = current_page_url();
+
+if($u->isAdmin()){
+    if($_POST['action'] == 'set_difficulty_level'){
+        $u->setDifficultyLevel($_POST['p'], $_POST['difficulty_level']);
+    }
+    $problem_level = $u->getDifficultyLevelOfProblem($_GET['p']);
+    $levels = $u->getDifficultyLevels();
+}
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -89,6 +97,28 @@
                                                         </select>
                                                         </form>
                                                         </p>
+                                                        <?php } ?>
+                                                        <?php 
+                                                        if($u->isAdmin()){
+                                                        ?>
+                                                        <form action="" method="post" class="no-print">
+                                                        <input type="hidden" name="p" value="<?php echo $problem_id; ?>"/>
+                                                        <input type="hidden" name="action" value="set_difficulty_level" />
+                                                        <select name="difficulty_level" onchange="this.form.submit();">
+                                                            <option value="">Difficulty level</option>
+                                                            <?php
+                                                            foreach($levels as $l){
+                                                                if($problem_level == $l['id']){
+                                                                    $selected = "selected";
+                                                                }
+                                                                else{
+                                                                    $selected = "";
+                                                                }
+                                                                echo "<option value=\"$l[id]\" $selected>$l[level]</option>";
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                        </form>
                                                         <?php } ?>
                                                         <hr/>
                                                         <?php
